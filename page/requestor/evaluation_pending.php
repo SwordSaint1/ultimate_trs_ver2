@@ -34,7 +34,7 @@
               <thead>
                 <tr>
                   <div class="col-sm-6">
-                  <span for="">Date Submit From:</span> <input type="date" id="pendingvalrequestDateFrom" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
+                  <span for="">Date Submit From:</span> <input type="date" id="pendingvalrequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
                   </div>
                 </tr>
                 <tr>

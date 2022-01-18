@@ -63,7 +63,7 @@
                     <tr>
                       <th>
                         <button class="btn btn-secondary" onclick="uncheck_all()">Uncheck</button>
-                        <button class="btn btn-success " onclick="export_req_pending('req_pending_qualif')">Export</button>  
+                        <button class="btn btn-success " onclick="export_req_pending_qualif('req_pending_qualif_data')">Export</button>  
                          <button class="btn btn-warning " onclick="update_remarks()" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">Set Remarks</button>  
                          <button class="btn btn-danger" onclick="cancel_pending()" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">Cancel</button>
                       </th>
@@ -82,10 +82,10 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap table-hover" id="req_pending_qualif">
+                <table class="table table-head-fixed text-nowrap table-hover" id="req_pending_qualif_data">
                       <thead style="text-align:center;">
                     <th>
-                      <input type="checkbox" name="" id="check_all" onclick="select_all_func()">
+                      <input type="checkbox" name="" id="check_all_pending_qualif" onclick="select_all_func()">
                     </th>
                     <th>#</th>
                     <th>Employee No.</th>

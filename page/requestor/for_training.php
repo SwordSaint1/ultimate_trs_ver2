@@ -34,7 +34,7 @@
  							<thead>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Training Start Date From:</span> <input type="date" id="fortrainingDateFrom" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Training Start Date From:</span> <input type="date" id="fortrainingDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>

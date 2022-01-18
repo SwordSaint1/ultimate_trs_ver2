@@ -35,7 +35,7 @@
                
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">OJT Start Date:</span> <input type="date" class="form-control" id="ojtrequestDateFrom" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">OJT Start Date:</span> <input type="date" class="form-control" id="ojtrequestDateFrom" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>

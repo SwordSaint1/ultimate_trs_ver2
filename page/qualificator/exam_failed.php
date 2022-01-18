@@ -35,7 +35,7 @@
  							<thead>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Authorization Date From:</span> <input type="date" id="failedexamrequestDateFrom" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Authorization Date From:</span> <input type="date" id="failedexamrequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>

@@ -60,7 +60,7 @@
                             <option value="">Select Section</option>
                          <?php
                             require 'process/conn.php';
-                            $get_curiculum = "SELECT DISTINCT section FROM trs_section";
+                            $get_curiculum = "SELECT DISTINCT section FROM trs_section ORDER BY section ASC";
                             $stmt = $conn->prepare($get_curiculum);
                             $stmt->execute();
                             foreach($stmt->fetchALL() as $x){
@@ -68,6 +68,7 @@
                             }
                             ?>
                         </select>
+                        
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-tasks"></span>

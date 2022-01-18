@@ -238,7 +238,7 @@ if ($method == 'qualif_confirm') {
     //COUNT OF ITEM TO BE UPDATED
     $count = count($id);
     foreach($id as $x){
-        $cancel = "UPDATE trs_request SET approval_status = '3', training_type = '$qualiftraining_t', training_need = '$qualiftraining_n', qualifapproval_date = '$server_date_only' WHERE batch_number = '$newbatch_number' AND id = '$x'";
+        $cancel = "UPDATE trs_request SET remarks = '$qualif_remarks', approval_status = '3', training_type = '$qualiftraining_t', training_need = '$qualiftraining_n', qualifapproval_date = '$server_date_only' WHERE batch_number = '$newbatch_number' AND id = '$x'";
         $stmt = $conn->prepare($cancel);
         if ($stmt->execute()) {
                 
@@ -262,6 +262,42 @@ if ($method == 'qualif_confirm') {
         }
 } 
 
+
+if ($method == 'update_for_cancel') {
+    $id = [];
+    $id = $_POST['id'];
+    $newbatch_number = $_POST['newbatch_number'];
+    $reason = $_POST['reason'];
+    //COUNT OF ITEM TO BE UPDATED
+    $count = count($id);
+    foreach($id as $x){
+       $for_cancel = "UPDATE trs_qualif SET qualif_approve_date = NULL, qualif_cancel_date = '$server_date_only', qualif_remarks = '$reason' WHERE id = '$x'";
+       $stmt = $conn->prepare($for_cancel);
+        if ($stmt->execute()) {
+                
+           $select = "SELECT employee_num FROM trs_qualif WHERE id = '$x'";
+            $stmt2 = $conn->prepare($select);
+            $stmt2->execute();
+            foreach($stmt2->fetchALL() as $j){
+                $employee_num = $j['employee_num'];
+            }
+
+            $update = "UPDATE trs_request SET approval_status = 0, ft_status = '0', qualifapproval_date = NULL, qualifcancel_date = '$server_date_only', remarks = '$reason' WHERE employee_num = '$employee_num'";
+            $stmt3 = $conn->prepare($update);
+        }
+        if ($stmt3->execute()) {
+            // echo 'approved';
+            $count = $count - 1;
+        }else{
+            // echo 'error';
+        }
+    }
+        if($count == 0){
+            echo 'success';
+        }else{
+            echo 'fail';
+        }
+} 
 
 
 
@@ -391,8 +427,6 @@ if ($method == 'cancel_qualif') {
             
         }
 
-
-
 if ($method == 'fetch_approve_request_qualif') {
         $role = $_POST['role'];
         $dateTo = $_POST['dateTo'];
@@ -425,40 +459,6 @@ if ($method == 'fetch_approve_request_qualif') {
     }
 
 
-        
-
-//         if ($method == 'fetch_approve_request_qualif') {
-//         $role = $_POST['role'];
-//         $dateTo = $_POST['dateTo'];
-//         $dateFrom = $_POST['dateFrom'];
-//         $batch = trim($_POST['batch']);
-    
-//         $c = 0;
-//     $query = "SELECT id,batch_number,qualifapproval_date, approval_status FROM trs_request WHERE approval_status = 3 AND (qualifcancel_date >='$dateFrom' AND qualifcancel_date <= '$dateTo') GROUP BY batch_number";
-//     $stmt = $conn->prepare($query);
-//     $stmt->execute();
-//     if ($stmt->rowCount() > 0) {
-//         foreach($stmt->fetchALL() as $x){
-//         $c++;
-
-//             if ($role == 'qualificator') {
-//                 echo '<tr style="cursor:pointer;" class="modal-trigger" data-target="qualif_approve" onclick="get_view_qualif(&quot;'.$x['id'].'~!~'.$x['batch_number'].'~!~'.$x['approval_status'].'~!~'.$x['qualifapproval_date'].'&quot;)">';
-//                 echo '<td>'.$c.'</td>';
-//                 echo '<td>'.$x['batch_number'].'</td>';
-//                 // echo '<td>'.$x['approval_status'].'</td>';
-//                 echo '<td>'.$x['qualifapproval_date'].'</td>';
-//                 echo '</tr>';
-//             }
-//     }
-// }else{
-//         echo '<tr>';
-//             echo '<td colspan="3" style="text-align:center;">NO RESULT</td>';
-//             echo '</tr>';
-//             }
-//     }
-
-
-
 if($method == 'approveBatch'){
         $id = trim($_POST['id']); 
         $batch_number = trim($_POST['batch_number']);
@@ -467,7 +467,7 @@ if($method == 'approveBatch'){
         $c=0;
     $query ="SELECT trs_qualif.id, trs_qualif.employee_num,trs_qualif.qualif_approve_date,trs_qualif.batch_num,
 trs_request.full_name,trs_request.position,trs_request.department,trs_request.section,trs_request.emline,
-trs_request.training_reason,trs_request.request_date_time,date_format(request_date_time, '%Y-%m-%d %H:%i:%s') as request_date_time,trs_request.approval_status,trs_request.eprocess,trs_request.requested_by
+trs_request.training_reason,trs_request.request_date_time,date_format(request_date_time, '%Y-%m-%d %H:%i:%s') as request_date_time,trs_request.approval_status,trs_request.eprocess,trs_request.requested_by,trs_request.remarks
 
 FROM trs_qualif
 LEFT JOIN trs_request ON trs_qualif.employee_num = trs_request.employee_num 
@@ -480,7 +480,14 @@ WHERE trs_request.approval_status = 3 AND trs_request.batch_number = '$batch_num
 
            
                 echo '<tr>';
-
+                    echo '<td>';
+                echo '<p>
+                        <label>
+                            <input type="checkbox" name="" id="" class="singleCheck" value="'.$x['id'].'">
+                            <span></span>
+                        </label>
+                    </p>';
+                echo '</td>';
                      echo '<td>'.$c.'</td>';
                     echo '<td>'.$x['employee_num'].'</td>';
                     echo '<td>'.$x['full_name'].'</td>';
@@ -490,7 +497,7 @@ WHERE trs_request.approval_status = 3 AND trs_request.batch_number = '$batch_num
                     echo '<td>'.$x['section'].'</td>';
                     echo '<td>'.$x['emline'].'</td>';
                     echo '<td>'.$x['training_reason'].'</td>';
-                    // echo '<td>'.$x['approval_status'].'</td>';
+                    echo '<td>'.$x['remarks'].'</td>';
                     echo '<td>'.$x['request_date_time'].'</td>';
                     echo '<td>'.$x['requested_by'].'</td>';
                     echo '<td>'.$x['qualif_approve_date'].'</td>';
@@ -1684,17 +1691,18 @@ if ($newevalstat == 'Cancel') {
 
 if($method == 'fetch_ojt_qualif'){
         $id = trim($_POST['id']); 
-        $training_code = $_POST['training_code'];
-
+        $training_code = trim($_POST['training_code']);
+        $process = $_POST['process'];
          $c = 0;
 
 
 $query = "SELECT trs_for_training.id,trs_for_training.training_code,trs_for_training.employee_num,trs_for_training.training_type,trs_for_training.process, trs_for_training.ojt_start,trs_for_training.ojt_end, trs_request.full_name,trs_request.requested_by
 FROM trs_for_training 
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
-WHERE trs_for_training.confirmation = 5 AND trs_for_training.ojt_status = '' OR
-trs_for_training.ojt_status = 'For OJT Extension' AND trs_for_training.eval_status =
-'OJT Extension' AND trs_for_training.training_code = '$training_code' AND trs_for_training.id = '$id' GROUP BY trs_for_training.employee_num";
+WHERE trs_for_training.training_code = '$training_code' AND trs_for_training.confirmation = '5' AND trs_for_training.ojt_status = '' OR
+trs_for_training.ojt_status = 'For OJT Extension' AND trs_for_training.process = '$process' 
+
+GROUP BY trs_for_training.employee_num";
         $stmt = $conn->prepare($query);
         $stmt->execute();
         if($stmt->rowCount() > 0){
@@ -1748,11 +1756,11 @@ trs_for_training.ojt_status = 'For OJT Extension' AND trs_for_training.eval_stat
         $c = 0;
     // $query = "SELECT id,training_code,training_type,process,ojt_end FROM trs_for_training WHERE confirmation = '5' AND ojt_status ='' OR eval_status = 'OJT Extension' GROUP BY training_code";
 
-        $query = " SELECT * FROM trs_for_training WHERE confirmation = '5' AND ojt_status ='' OR eval_status = 'OJT Extension' GROUP BY training_code
+        $query = " SELECT * FROM trs_for_training WHERE confirmation = '5' AND ojt_status ='' OR ojt_status = 'For OJT Extension' OR eval_status = 'OJT Extension' GROUP BY training_code,process
         ";
     $stmt = $conn->prepare($query);
     if ($stmt->execute()) {
-        $a ="SELECT process FROM trs_for_training WHERE process LIKE '$process%'";
+        $a ="SELECT * FROM trs_for_training WHERE process LIKE '$process%'";
         $stmt2 = $conn->prepare($a);
 
     
@@ -1764,7 +1772,7 @@ trs_for_training.ojt_status = 'For OJT Extension' AND trs_for_training.eval_stat
         $c++;
 
             if ($role == 'qualificator') {
-                echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#ojt_view" onclick="get_ojt_view(&quot;'.$x['id'].'~!~'.$x['training_code'].'~!~'.$x['training_type'].'~!~'.$x['ojt_end'].'&quot;)">';
+                echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#ojt_view" onclick="get_ojt_view(&quot;'.$x['id'].'~!~'.$x['training_code'].'~!~'.$x['training_type'].'~!~'.$x['process'].'~!~'.$x['ojt_end'].'&quot;)">';
                 echo '<td>'.$c.'</td>';
                 echo '<td>'.$x['training_code'].'</td>';
                 echo '<td>'.$x['training_type'].'</td>';
@@ -1800,7 +1808,7 @@ trs_for_training.examiner,trs_for_training.exam_status,trs_for_training.last_sta
 FROM trs_request
 LEFT JOIN trs_for_training ON trs_for_training.employee_num = trs_request.employee_num
 LEFT JOIN trs_training_sched ON trs_for_training.training_code = trs_training_sched.training_code
-WHERE (trs_request.request_date_time >='$dateFrom 00:00:00' AND trs_request.request_date_time <= '$dateTo 23:59:59') GROUP BY trs_for_training.id
+WHERE (trs_request.request_date_time >='$dateFrom 00:00:00' AND trs_request.request_date_time <= '$dateTo 23:59:59') GROUP BY trs_request.id,trs_for_training.id
 ";
 
 

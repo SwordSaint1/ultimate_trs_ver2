@@ -74,13 +74,10 @@ $check = "SELECT id FROM trs_request WHERE employee_num = '$employee_num' AND ft
 		$role = $_POST['role'];
 		$esection = $_POST['esection'];
 		    $dateFrom = $_POST['dateFrom'];
-        	 $dateTo = $_POST['dateTo'];
- 		
-
-		$c = 0;
+        	$dateTo = $_POST['dateTo'];
+			$c = 0;
 
 	$query = "SELECT *,date_format(request_date_time, '%Y-%m-%d %H:%i:%s') as request_date_time FROM trs_request WHERE approval_status = '1' AND esection = '$esection' AND (request_date_time >='$dateFrom 00:00:00' AND request_date_time <= '$dateTo 23:59:59') GROUP BY batch_number" ;
-
 
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
@@ -410,6 +407,7 @@ if ($method == 'fetch_pendingq_request_req') {
             		echo '<td>'.$x['requested_by'].'</td>';
 					echo '<td>'.$x['approval_date'].'</td>';
 					echo '<td>'.$x['qualifapproval_date'].'</td>';
+					echo '<td>'.$x['remarks'].'</td>';
             	
 
                 echo '</tr>';

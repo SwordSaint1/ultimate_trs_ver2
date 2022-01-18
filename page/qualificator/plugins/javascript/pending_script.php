@@ -71,14 +71,14 @@ const get_req_qualif =(param)=>{
 
 // check all and uncheck
 const uncheck_all =()=>{
-    var select_all = document.getElementById('check_all');
+    var select_all = document.getElementById('check_all_pending_qualif');
     select_all.checked = false;
     $('.singleCheck').each(function(){
         this.checked=false;
     });
 }
 const select_all_func =()=>{
-    var select_all = document.getElementById('check_all');
+    var select_all = document.getElementById('check_all_pending_qualif');
     if(select_all.checked == true){
         console.log('check');
         $('.singleCheck').each(function(){
@@ -92,7 +92,7 @@ const select_all_func =()=>{
     }
 }
 
-function export_req_pending(table_id, separator = ',') {
+function export_req_pending_qualif(table_id, separator = ',') {
     // Select rows from table_id
     var rows = document.querySelectorAll('table#' + table_id + ' tr');
     // Construct csv
@@ -119,7 +119,7 @@ function export_req_pending(table_id, separator = ',') {
     link.click();
     document.body.removeChild(link);
 }
-
+ 
 // onchange process in request edit modal
 const load_training =()=>{
         // VARIABLE X IS THE ID OF REASON SELECT TAG
@@ -253,7 +253,7 @@ const approve_pending =()=>{
       var qualiftraining_n= document.getElementById('qualiftraining_n').value;
     var qualiftraining_t = $('#qualiftraining_t').val();
     var qualif_remarks = $('#qualif_remarks').val();
-
+ 
     if (qualiftraining_t == '' && qualiftraining_n == '') {
 
         swal('ALERT','Select Training Type','info'); 

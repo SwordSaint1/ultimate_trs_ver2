@@ -34,7 +34,7 @@
  							<thead>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Start Date:</span> <input type="date" id="update2requestDateFrom" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Start Date:</span> <input type="date" id="update2requestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>

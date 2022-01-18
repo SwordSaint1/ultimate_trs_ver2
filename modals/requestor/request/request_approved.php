@@ -35,8 +35,7 @@
                     <th>Requested By</th>
                     <th>Date Approved (Superior)</th>
                     <th>Date Approved (Qualificator)</th>
-
-
+                    <th>Remarks</th>
                 </thead>
                 <tbody id="data_request_approve" style="text-align: center;"></tbody>
                 </table>

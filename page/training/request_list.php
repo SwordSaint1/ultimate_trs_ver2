@@ -35,7 +35,7 @@
                
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Requested Date From:</span> <input type="date" class="form-control" id="requestlistrequestDateFrom" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Requested Date From:</span> <input type="date" class="form-control" id="requestlistrequestDateFrom" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>
@@ -59,7 +59,7 @@
                 <table class="table table-head-fixed text-nowrap table-hover">
                 <thead style="text-align:center;">
                       <th> # </th>
-                      <th> Request Code</th>
+                      <!-- <th> Request Code</th> -->
                       <th>Training Type</th>
                       <th>Process </th>
                       <th>Total </th>            

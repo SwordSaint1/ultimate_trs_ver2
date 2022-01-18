@@ -1,5 +1,3 @@
-
-
 <?php 
 //SESSION
 include '../../process/session.php';

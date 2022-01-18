@@ -35,7 +35,7 @@
                
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Approved Date From:</span> <input type="date" class="form-control" id="for_schedrequestDateFrom" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Approved Date From:</span> <input type="date" class="form-control" id="for_schedrequestDateFrom" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>

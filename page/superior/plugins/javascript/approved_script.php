@@ -8,6 +8,7 @@
 
 const load_approved_list_req_superior =()=>{
      var role = '<?=$role;?>';
+      var esection = '<?=$esection;?>';
      var dateFrom = document.getElementById('approve_suprequestDateFrom').value;
     var dateTo = document.getElementById('approve_suprequestDateTo').value;
 
@@ -20,7 +21,8 @@ const load_approved_list_req_superior =()=>{
                     method: 'fetch_approve_request_superior',
                     role:role,
                     dateFrom:dateFrom,
-                    dateTo:dateTo
+                    dateTo:dateTo,
+                    esection:esection
                 },success:function(response){
                     // console.log(response);
                     document.getElementById('approved_data_superior').innerHTML = response;
@@ -61,4 +63,6 @@ const get_view_superior =(param)=>{
     });
 
 }
+
+
 </script>

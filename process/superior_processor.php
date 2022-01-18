@@ -144,11 +144,11 @@ if ($method == 'fetch_approve_request_superior') {
 		$role = $_POST['role'];
 		$dateTo = $_POST['dateTo'];
 		$dateFrom = $_POST['dateFrom'];
-
+ 		$esection = $_POST['esection'];
 		$c = 0;
 	$query = "SELECT id,batch_number, approval_status, approval_date	
     ,date_format(approval_date, '%m-%d-%Y') as approval_date
-	 FROM trs_request WHERE approval_status = 2 AND (approval_date >='$dateFrom 00:00:00' AND approval_date <= '$dateTo 23:59:59') GROUP BY batch_number";
+	 FROM trs_request WHERE approval_status = 2 AND (approval_date >='$dateFrom 00:00:00' AND approval_date <= '$dateTo 23:59:59') AND esection = '$esection' GROUP BY batch_number";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -178,11 +178,12 @@ if ($method == 'fetch_cancel_request_superior') {
 		$role = $_POST['role'];
 		$dateTo = $_POST['dateTo'];
 		$dateFrom = $_POST['dateFrom'];
+		$esection = $_POST['esection'];
 		$c = 0;
 	$query = "SELECT id,batch_number, approval_status, cancel_date, qualifcancel_date 
 	,date_format(cancel_date, '%m-%d-%Y') as cancel_date
 	,date_format(qualifcancel_date, '%m-%d-%Y') as qualifcancel_date
-	FROM trs_request WHERE approval_status = 0 AND (cancel_date >='$dateFrom 00:00:00' AND cancel_date <= '$dateTo 23:59:59')
+	FROM trs_request WHERE approval_status = 0 AND (cancel_date >='$dateFrom 00:00:00' AND cancel_date <= '$dateTo 23:59:59') AND esection = '$esection'
 GROUP BY batch_number";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
@@ -214,13 +215,14 @@ GROUP BY batch_number";
         $batch_number = trim($_POST['batch_number']);
         $approval_status= trim($_POST['approval_status']);
         $request_date_time = trim($_POST['request_date_time']);
+        $esection = $_POST['esection'];
         $c=0;
     
     
    
 
        $query = "SELECT *,date_format(request_date_time, '%m-%d-%Y %H:%i:%s') as request_date_time
-	   ,date_format(approval_date, '%m-%d-%Y') as approval_date FROM trs_request WHERE batch_number = '$batch_number' AND approval_status = 2 ";
+	   ,date_format(approval_date, '%m-%d-%Y') as approval_date FROM trs_request WHERE batch_number = '$batch_number' AND approval_status = 2  AND esection = '$esection' GROUP BY employee_num";
 
         $stmt = $conn->prepare($query);
         $stmt->execute();
@@ -263,7 +265,7 @@ GROUP BY batch_number";
         $query = "SELECT *,date_format(request_date_time, '%m-%d-%Y %H:%i:%s') as request_date_time 
 		,date_format(cancel_date, '%m-%d-%Y') as cancel_date
 		,date_format(qualifcancel_date, '%m-%d-%Y') as qualifcancel_date
-		FROM trs_request WHERE batch_number = '$batch_number' AND approval_status = 0 AND esection = '$esection' ";
+		FROM trs_request WHERE batch_number = '$batch_number' AND approval_status = 0 AND esection = '$esection' GROUP BY employee_num";
 
         $stmt = $conn->prepare($query);
         $stmt->execute();

@@ -1,11 +1,11 @@
-
-
 <div class="modal fade bd-example-modal-xl" id="ojt_view" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
          <span>Training Code: </span>  <input type="text" name="" id="training_code_ojt_qualif" readonly="" style="text-align: center;" class="form-control-lg">
+         <input type="hidden" name="id_ojt_qualif" id="id_ojt_qualif">
+          <input type="hidden" name="process_ojt_qualif" id="process_ojt_qualif">
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">
           <span aria-hidden="true">&times;</span>

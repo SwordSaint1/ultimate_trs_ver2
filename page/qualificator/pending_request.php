@@ -35,7 +35,7 @@
  							<thead>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Requested Date From:</span> <input type="date" id="pending_qualifrequestDateFrom" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Requested Date From:</span> <input type="date" id="pending_qualifrequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>

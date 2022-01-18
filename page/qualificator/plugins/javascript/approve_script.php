@@ -59,6 +59,70 @@ const get_view_qualif =(param)=>{
             $('#qualif_approve_data_list').html(response);
         }
     });
-
+ 
 }
-</script>
+
+// check all and uncheck
+const uncheck_all =()=>{
+    var select_all = document.getElementById('check_all');
+    select_all.checked = false;
+    $('.singleCheck').each(function(){
+        this.checked=false;
+    });
+}
+const select_all_func =()=>{
+    var select_all = document.getElementById('check_all');
+    if(select_all.checked == true){
+        console.log('check');
+        $('.singleCheck').each(function(){
+            this.checked=true;
+        });
+    }else{
+        console.log('uncheck');
+        $('.singleCheck').each(function(){
+            this.checked=false;
+        }); 
+    }
+}
+
+// cancel function
+const update_for_cancel =()=>{
+   var arr = [];
+    $('input.singleCheck:checkbox:checked').each(function () {
+        arr.push($(this).val());
+    });
+
+    console.log(arr);
+    var numberOfChecked = arr.length;
+    if(numberOfChecked > 0){
+
+
+    var newbatch_number= document.getElementById('batch_number_approve_qualif').value;
+    var reason = document.getElementById('remarks_for_cancel').value;
+
+    $.ajax({
+        url: '../../process/qualificator_processor.php',
+        type: 'POST',
+        cache: false,
+        data:{
+            method: 'update_for_cancel',
+            id:arr,
+            newbatch_number:newbatch_number,
+            reason:reason
+            
+        },success:function(response) {
+            console.log(response);
+            if (response == 'success') {
+                load_approved_list_req_qualificator();
+                 uncheck_all();
+                swal('Cancel!', 'Cancel', 'info');
+            }else{
+                swal('FAILED', 'FAILED', 'error');
+            }
+        }
+    });
+   }
+}
+
+
+</script> 

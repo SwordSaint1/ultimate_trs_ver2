@@ -574,6 +574,8 @@ if($method == 'fetch_for_training2'){
         $c = 0;
         $query = "SELECT id, training_code,batch_number,training_type,eprocess, count(id) as total, request_date_time FROM trs_request WHERE approval_status = 3 AND (request_date_time >='$dateFrom 00:00:00' AND request_date_time <= '$dateTo 23:59:59')
      GROUP BY training_type,eprocess";
+
+
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
@@ -585,7 +587,7 @@ if($method == 'fetch_for_training2'){
             if ($role == 'training') {
                 echo '<tr">';
                 echo '<td>'.$c.'</td>';
-                echo '<td>'.$x['batch_number'].'</td>';
+                // echo '<td>'.$x['batch_number'].'</td>';
                 echo '<td>'.$x['training_type'].'</td>';
                 echo '<td>'.$x['eprocess'].'</td>';
                  echo '<td>'.$x['total'].'</td>';

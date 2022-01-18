@@ -30,12 +30,14 @@ const get_ojt_view =(param)=>{
     var data = param.split('~!~');
     var id = data[0];
     var training_code = data[1];
+    var process = data[3];
     var esection = '<?=$esection;?>';
     var role = '<?=$role;?>';
 
     $('#training_code_ojt_qualif').val(training_code);
-
-   console.log(param);
+    $('#id_ojt_qualif').val(id);
+    $('#process_ojt_qualif').val(process);
+   // console.log(training_code);
     $.ajax({
         url:'../../process/qualificator_processor.php',
         type: 'POST',
@@ -45,11 +47,13 @@ const get_ojt_view =(param)=>{
             id:id,
             esection:esection,
             role:role,
-            training_code:training_code
+            training_code:training_code,
+            process:process
         },success:function(response){
+            // console.log(response);
             document.getElementById('data_ojt_list_qualif').innerHTML = response;
             
-
+ 
         }
     });
 

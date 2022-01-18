@@ -8,9 +8,10 @@
 
 const load_cancelled_list_superior =()=>{
      var role = '<?=$role;?>';
+     var esection = '<?=$esection;?>';
       var dateFrom = document.getElementById('cancel_suprequestDateFrom').value;
     var dateTo = document.getElementById('cancel_suprequestDateTo').value;
- 
+    
 
            $.ajax({
                 url: '../../process/superior_processor.php',
@@ -20,7 +21,8 @@ const load_cancelled_list_superior =()=>{
                     method: 'fetch_cancel_request_superior',
                     role:role,
                     dateFrom:dateFrom,
-                    dateTo:dateTo
+                    dateTo:dateTo,
+                    esection:esection
                 },success:function(response){
                     // console.log(response);
                     document.getElementById('cancel_data').innerHTML = response;
