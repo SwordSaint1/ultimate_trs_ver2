@@ -1,11 +1,9 @@
-
-
-<div class="modal fade bd-example-modal-xl" id="qualif_details" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-xl" id="qualif_pending_approval" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          <span>Request Code:</span>     <input type="text" name="batch_number_prev_qualif" id="batch_number_prev_qualif" class="form-control-lg" readonly="">
+          <span>Request Code:</span>     <input type="text" name="batch_number_pending_approval_qualif" id="batch_number_pending_approval_qualif" class="form-control-lg" readonly="">
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">
           <span aria-hidden="true">&times;</span>
@@ -32,7 +30,7 @@
                     <tr>
                       
                       <td>
-                         <select id="qualiftraining_t" class="form-control training_type" onchange="load_training()">
+                         <select id="qualiftraining_t_pending_approval" class="form-control training_type" onchange="load_training_pending_approval()">
                             <option value="">Select Training Type</option>
                         <?php
                             require '../../process/conn.php';
@@ -46,12 +44,12 @@
                         </select>
                       </td>
                       <td>
-                         <select id="qualiftraining_n" class="form-control eprocess"  >
+                         <select id="qualiftraining_n_pending_approval" class="form-control eprocess"  >
                             <option value=""></option>
                          </select>
                       </td>
                       <td>
-                         <input type="text" id="qualif_remarks" class="form-control" name="qualif_remarks" autocomplete="off" value="">
+                         <input type="text" id="qualif_remarks_pending_approval" class="form-control" name="qualif_remarks" autocomplete="off" value="">
                       </td>
                     </tr>
                     
@@ -63,8 +61,8 @@
                     <tr>
                       <th>
                         <button class="btn btn-secondary" onclick="uncheck_all()">Uncheck</button>
-                        <button class="btn btn-success " onclick="export_req_pending_qualif('req_pending_qualif_data')">Export</button>  
-                         <button class="btn btn-warning " onclick="update_remarks()" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">Set Remarks</button>  
+                        <button class="btn btn-success " onclick="export_req_pending_approval_qualif('req_pending_approval_qualif_data')">Export</button>  
+                         <button class="btn btn-warning " onclick="update_remarks_pending_approval()" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">Set Remarks</button>  
                          <button class="btn btn-danger" onclick="cancel_pending()" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">Cancel</button>
                       </th>
                       </th>
@@ -82,10 +80,10 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap table-hover" id="req_pending_qualif_data">
+                <table class="table table-head-fixed text-nowrap table-hover" id="req_pending_approval_qualif_data">
                       <thead style="text-align:center;">
                     <th>
-                      <input type="checkbox" name="" id="check_all_pending_qualif" onclick="select_all_func()">
+                      <input type="checkbox" name="" id="check_all_pending_approval_qualif" onclick="select_all_func()">
                     </th>
                     <th>#</th>
                      <th>Batch No.</th>
@@ -103,7 +101,7 @@
 
 
                 </thead>
-                <tbody id="view_request_details" style="text-align: center;"></tbody>
+                <tbody id="view_request_details_pending_approval" style="text-align: center;"></tbody>
                 </table>
               </div>
               <!-- /.card-body -->

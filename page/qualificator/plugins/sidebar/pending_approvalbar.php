@@ -35,8 +35,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-close">
-            <a href="#" class="nav-link ">
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
               <i class="  fa fa-edit"></i>
               <p>
                 Training Request
@@ -50,8 +50,8 @@
                   <p>Pending Request</p>
                 </a>
               </li>
-                <li class="nav-item">
-                <a href="pending_approval.php" class="nav-link">
+               <li class="nav-item">
+                <a href="pending_approval.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pending Approval Req</p>
                 </a>
@@ -70,7 +70,7 @@
               </li>
             </ul>
           </li>
-           <li class="nav-item menu-close">
+            <li class="nav-item menu-close">
             <a href="#" class="nav-link">
               <i class="  fas fa-tasks"></i>
               <p>
@@ -93,7 +93,7 @@
               </li>
             </ul>
           </li>
-         <li class="nav-item">
+          <li class="nav-item">
             <a href="update_authorization.php" class="nav-link">
               <i class="fa fa-undo"></i>
               <p>
@@ -155,7 +155,7 @@
             </a>
           </li>
            <li class="nav-item">
-            <a href="history.php" class="nav-link active">
+            <a href="history.php" class="nav-link">
               <i class="far fa-file-alt"></i>
               <p>
                History
@@ -187,6 +187,7 @@
             </ul>
           </li>
           
+           
          
         
          <?php include 'logout.php' ;?>

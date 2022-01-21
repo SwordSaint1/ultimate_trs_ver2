@@ -55,7 +55,7 @@ console.log(training_code);
 
         }
     });
-
+ 
 }
 
 const uncheck_all =()=>{

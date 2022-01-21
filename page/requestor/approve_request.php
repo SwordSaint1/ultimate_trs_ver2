@@ -34,12 +34,12 @@
  							<thead>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Requested Date From:</span> <input type="date" id="approverequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
+ 									<span for="">Approved Date From:</span> <input type="date" id="approverequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Requested Date To:</span>  <input type="date" id="approverequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Approved Date To:</span>  <input type="date" id="approverequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
  									</div>
  								</tr>
  							</thead>
@@ -59,7 +59,7 @@
                 <thead style="text-align:center;">
                 <th> # </th>
                 <th> Request Code </th>
-                <th>  Approved Date</th>
+                <th> Approved Date</th>
             </thead>
             <tbody id="approved_data_req" style="text-align:center;"></tbody>
                 </table>

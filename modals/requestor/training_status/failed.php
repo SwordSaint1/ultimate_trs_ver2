@@ -25,6 +25,7 @@
                 <table class="table table-head-fixed text-nowrap table-hover">
                       <thead style="text-align:center;">
                     <th>#</th>
+                     <th>Batch No.</th>
                     <th>Employee No.</th>
                     <th>Full Name</th>                
                     <th>Training Type</th>

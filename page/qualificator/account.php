@@ -34,7 +34,7 @@
             <table>
               <thead>
                 <tr>
-                  <div class="col-9">
+                  <div class="col-5">
                     <select id="role_search" class="form-control role_search">
                             <option value="">Select Role</option>
                           <?php
@@ -47,6 +47,24 @@
                             }
                      ?>
                         </select>
+                  </div>
+                </tr>
+                <tr>
+                  <div class="col-4">
+                    <select id="section_acc_search" class="form-control">
+                      <option value="">Select Section</option>
+                        <?php
+                        require '../../process/conn.php';
+                        $get_section = "SELECT DISTINCT esection FROM trs_accounts";
+                          $stmt = $conn->prepare($get_section);
+                            $stmt->execute();
+                            foreach($stmt->fetchALL() as $x){
+                                echo '<option value="'.$x['esection'].'">'.$x['esection'].'</option>';
+                            }
+
+                        ?>
+                    </select>
+                    
                   </div>
                 </tr>
                 <tr>

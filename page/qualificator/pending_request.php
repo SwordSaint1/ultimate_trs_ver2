@@ -43,6 +43,7 @@
  									<span for="">Requested Date To:</span>  <input type="date" id="pending_qualifrequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
  									</div>
  								</tr>
+
  							</thead>
  						</table>
  					</div>

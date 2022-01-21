@@ -66,14 +66,15 @@
                     <th> Training Code</th>
                     <th> Training Type</th>
                     <th> Process</th>
+                    <th> Trainer</th>
+                    <th> Location</th>
                     <th> Slot</th>
                     <th> Shift</th>
                     <th> Start Date</th>
                     <th> Start Time</th>
                     <th> End Date</th>
                     <th> End Time</th>
-                    <th> Trainer</th>
-                    <th> Location</th>
+                    
                 </thead>
             <tbody id="updated_sched_list" style="text-align:center;"></tbody>
                 </table>

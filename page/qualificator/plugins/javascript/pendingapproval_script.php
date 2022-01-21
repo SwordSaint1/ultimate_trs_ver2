@@ -1,14 +1,13 @@
 <script type="text/javascript">
 	 $(document).ready(function(){
-    	load_pending_qualificator();
+    	load_pending_approval_qualificator();
     });	
 
 	 //function pending tab data
-function load_pending_qualificator(){
+function load_pending_approval_qualificator(){
        var role = '<?=$role;?>';
-       var dateFrom = document.getElementById('pending_qualifrequestDateFrom').value;
-    var dateTo = document.getElementById('pending_qualifrequestDateTo').value;
-   
+       var dateFrom = document.getElementById('pending_approval_qualifrequestDateFrom').value;
+    var dateTo = document.getElementById('pending_approval_qualifrequestDateTo').value;
     // var batch = document.getElementById('batch_search_pending_qualif').value;
 
          
@@ -19,20 +18,21 @@ function load_pending_qualificator(){
                 type: 'POST',
                 cache: false,
                 data:{
-                    method: 'fetch_qualif',
+                    method: 'fetch_qualif_pending_approval',
                     role:role,
                     dateFrom:dateFrom,
                     dateTo:dateTo
+                 
 
                 },success:function(response){
                     // console.log(response);
-                    document.getElementById('qualif_data').innerHTML = response;
+                    document.getElementById('pendingapproval_qualif_data').innerHTML = response;
                
                 }
             });
-        }
+        } 
 
-const get_req_qualif =(param)=>{
+const get_req_qualif_pending_approval =(param)=>{
     var data = param.split('~!~');
     var id = data[0];
     var batch_number = data[1];
@@ -48,7 +48,7 @@ const get_req_qualif =(param)=>{
 
 
  
-    $('#batch_number_prev_qualif').val(batch_number);
+    $('#batch_number_pending_approval_qualif').val(batch_number);
 
 
     $.ajax({
@@ -56,14 +56,14 @@ const get_req_qualif =(param)=>{
         type: 'POST',
         cache:false,
         data:{
-            method: 'prevbatchApp_qualif',
+            method: 'prevbatchApp_qualif_pending_approval',
             id:id,
             batch_number:batch_number,
             approval_status:approval_status,
             request_date_time:request_date_time,
             full_name:full_name
         },success:function(response){
-            $('#view_request_details').html(response);
+            $('#view_request_details_pending_approval').html(response);
         }
     });
 
@@ -71,14 +71,14 @@ const get_req_qualif =(param)=>{
 
 // check all and uncheck
 const uncheck_all =()=>{
-    var select_all = document.getElementById('check_all_pending_qualif');
+    var select_all = document.getElementById('check_all_pending_approval_qualif');
     select_all.checked = false;
     $('.singleCheck').each(function(){
         this.checked=false;
     });
 }
 const select_all_func =()=>{
-    var select_all = document.getElementById('check_all_pending_qualif');
+    var select_all = document.getElementById('check_all_pending_approval_qualif');
     if(select_all.checked == true){
         console.log('check');
         $('.singleCheck').each(function(){
@@ -92,7 +92,7 @@ const select_all_func =()=>{
     }
 }
 
-function export_req_pending_qualif(table_id, separator = ',') {
+function export_req_pending_approval_qualif(table_id, separator = ',') {
     // Select rows from table_id
     var rows = document.querySelectorAll('table#' + table_id + ' tr');
     // Construct csv
@@ -121,28 +121,30 @@ function export_req_pending_qualif(table_id, separator = ',') {
 }
  
 // onchange process in request edit modal
-const load_training =()=>{
+const load_training_pending_approval =()=>{
         // VARIABLE X IS THE ID OF REASON SELECT TAG
         // var value = $('#categ').val();
 
-         var value = document.querySelector('#qualiftraining_t').value;
+         var value = document.querySelector('#qualiftraining_t_pending_approval').value;
         console.log(value);
         $.ajax({
             url: '../../process/qualificator_processor.php',
             type: 'POST',
             cache: false,
             data:{
-                method: 'getTraining',
+                method: 'getTraining_pending_approval',
                 value:value
             },success:function(data){
                 // console.log(data);
-                $('#qualiftraining_n').html(data);
+                $('#qualiftraining_n_pending_approval').html(data);
             }
         });
     }
 
 
-const update_remarks =()=>{
+
+
+const update_remarks_pending_approval =()=>{
    var arr = [];
     $('input.singleCheck:checkbox:checked').each(function () {
         arr.push($(this).val());
@@ -151,8 +153,8 @@ const update_remarks =()=>{
     if(numberOfChecked > 0){
 
 
-    var newbatch_number= document.getElementById('batch_number_prev_qualif').value;
-    var qualif_remarks = $('#qualif_remarks').val();
+    var newbatch_number= document.getElementById('batch_number_pending_approval_qualif').value;
+    var qualif_remarks = $('#qualif_remarks_pending_approval').val();
 
  if(qualif_remarks == ''){
          swal('ALERT','Insert Remarks!','info'); 
@@ -164,7 +166,7 @@ const update_remarks =()=>{
         type: 'POST',
         cache: false,
         data:{
-            method: 'update_remarks_qualif',
+            method: 'update_remarks_qualif_pending_approval',
             id:arr,
             newbatch_number:newbatch_number,
             qualif_remarks:qualif_remarks
@@ -173,10 +175,10 @@ const update_remarks =()=>{
         },success:function(response) {
             console.log(response);
             if (response == 'success') {
-             load_pending_qualificator();
+             load_pending_approval_qualificator();
              uncheck_all();
                 swal('SUCCESS!', 'Success', 'success');
-                $('#qualif_remarks').val('');
+                $('#qualif_remarks_pending_approval').val('');
             }else{
                 swal('FAILED', 'FAILED', 'error');
             }
@@ -197,10 +199,10 @@ const cancel_pending =()=>{
     if(numberOfChecked > 0){
 
 
-    var newbatch_number= document.getElementById('batch_number_prev_qualif').value;
-      var qualiftraining_n= document.getElementById('qualiftraining_n').value;
-    var qualiftraining_t = $('#qualiftraining_t').val();
-    var qualif_remarks = $('#qualif_remarks').val();
+    var newbatch_number= document.getElementById('batch_number_pending_approval_qualif').value;
+      var qualiftraining_n= document.getElementById('qualiftraining_n_pending_approval').value;
+    var qualiftraining_t = $('#qualiftraining_t_pending_approval').val();
+    var qualif_remarks = $('#qualif_remarks_pending_approval').val();
 
     if(qualif_remarks == ''){
         swal('ALERT','Insert Remarks!','info'); 
@@ -212,7 +214,7 @@ const cancel_pending =()=>{
         type: 'POST',
         cache: false,
         data:{
-            method: 'cancel_qualif_pending',
+            method: 'cancel_qualif_pending_approval',
             id:arr,
             newbatch_number:newbatch_number,
             qualif_remarks:qualif_remarks,
@@ -223,10 +225,10 @@ const cancel_pending =()=>{
         },success:function(response) {
             console.log(response);
             if (response == 'success') {
-             load_pending_qualificator();
+             load_pending_approval_qualificator();
              uncheck_all();
                 swal('SUCCESS!', 'Success', 'success');
-                $('#qualif_remarks').val('');
+                $('#qualif_remarks_pending_approval').val('');
             }else{
                 swal('FAILED', 'FAILED', 'error');
             }
@@ -249,10 +251,10 @@ const approve_pending =()=>{
     if(numberOfChecked > 0){
 
 
-    var newbatch_number= document.getElementById('batch_number_prev_qualif').value;
-      var qualiftraining_n= document.getElementById('qualiftraining_n').value;
-    var qualiftraining_t = $('#qualiftraining_t').val();
-    var qualif_remarks = $('#qualif_remarks').val();
+    var newbatch_number= document.getElementById('batch_number_pending_approval_qualif').value;
+      var qualiftraining_n= document.getElementById('qualiftraining_n_pending_approval').value;
+    var qualiftraining_t = $('#qualiftraining_t_pending_approval').val();
+    var qualif_remarks = $('#qualif_remarks_pending_approval').val();
  
     if (qualiftraining_t == '' && qualiftraining_n == '') {
 
@@ -266,7 +268,7 @@ const approve_pending =()=>{
         type: 'POST',
         cache: false,
         data:{
-            method: 'approve_qualif_pending',
+            method: 'approve_qualif_pending_approval',
             id:arr,
             newbatch_number:newbatch_number,
             qualif_remarks:qualif_remarks,
@@ -277,12 +279,12 @@ const approve_pending =()=>{
         },success:function(response) {
             console.log(response);
             if (response == 'success') {
-             load_pending_qualificator();
+             load_pending_approval_qualificator();
              uncheck_all();
                 swal('SUCCESS!', 'Success', 'success');
-                $('#qualif_remarks').val('');
-                $('#qualiftraining_t').val('');
-                $('#qualiftraining_n').val('');
+                $('#qualif_remarks_pending_approval').val('');
+                $('#qualiftraining_t_pending_approval').val('');
+                $('#qualiftraining_n_pending_approval').val('');
             }else{
                 swal('FAILED', 'FAILED', 'error');
             

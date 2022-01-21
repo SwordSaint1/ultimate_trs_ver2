@@ -110,6 +110,7 @@
                       <input type="checkbox" name="" id="check_all" onclick="select_all_func()">
                     </th>
                     <th>#</th>
+                    <th>Batch No.</th>
                    <th>Employee No.</th>
                    <th>Full Name</th>                   
                    <th>Start Date</th>                 

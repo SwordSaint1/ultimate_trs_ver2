@@ -37,7 +37,7 @@ const get_view_for_training =(param)=>{
      $('#for_training_training_code').val(training_code);
      $('#training_type_for_training').val(training_type);
      $('#process_for_training').val(process);
-  
+   
     $.ajax({
         url:'../../process/req_processor.php',
         type: 'POST',

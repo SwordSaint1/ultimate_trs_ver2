@@ -35,6 +35,7 @@
                     <th>#</th>
                     <th>Training Code</th>
                     <th>Training Type</th>
+                    <th>Batch No.</th>
                     <th>Employee No.</th>
                     <th>Full Name</th>
                     <th>Position</th>

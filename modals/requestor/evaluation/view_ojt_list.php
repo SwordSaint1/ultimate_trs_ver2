@@ -45,9 +45,10 @@
                       <thead style="text-align:center;">
                     <th>
                         <input type="checkbox" name="" id="check_all_evaluation"  onclick="select_all_func_evaluation()">
-                    </th>
+                    </th> 
                     <th>#</th>
                     <th>Training Code</th>
+                    <th>Batch No.</th>
                     <th>Employee No.</th>
                     <th>Full Name</th>
                     <th>Training Type</th>

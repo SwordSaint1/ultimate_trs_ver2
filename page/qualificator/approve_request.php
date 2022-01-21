@@ -35,12 +35,12 @@
  							<thead>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Requested Date From:</span> <input type="date" id="approve_qualifrequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
+ 									<span for="">Approved Date From:</span> <input type="date" id="approve_qualifrequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Requested Date To:</span>  <input type="date" id="approve_qualifrequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Approved Date To:</span>  <input type="date" id="approve_qualifrequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
  									</div>
  								</tr>
  							</thead>
@@ -60,7 +60,7 @@
                  <thead>
                     <th style="text-align:center;">#</th>
                     <th style="text-align:center;">Request Code</th>
-                    <th style="text-align:center;">Request Date</th>
+                    <th style="text-align:center;">Approved Date</th>
                 
                 </thead>
                 <tbody id="approved_data_qualif" style="text-align:center;"></tbody>

@@ -5,7 +5,7 @@ const load_accounts =()=>{
      // var dateFrom = document.getElementById('accDateCreatedFrom').value;
      // var dateTo = document.getElementById('accDateCreatedTo').value;
      var roles = document.getElementById('role_search').value;
-  
+     var section = document.getElementById('section_acc_search').value;
            $.ajax({
                 url: '../../process/qualificator_processor.php',
                 type: 'POST',
@@ -13,9 +13,8 @@ const load_accounts =()=>{
                 data:{
                     method: 'fetch_acc_list',
                     role:role,
-                   
-                    roles:roles
-                    
+                    roles:roles,
+                    section:section
                 },success:function(response){
                     // console.log(response);
                     document.getElementById('accounts_data').innerHTML = response;

@@ -35,12 +35,12 @@
  							<thead>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Requested Date From:</span> <input type="date" id="approve_suprequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
+ 									<span for="">Approved Date From:</span> <input type="date" id="approve_suprequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Requested Date To:</span>  <input type="date" id="approve_suprequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Approved Date To:</span>  <input type="date" id="approve_suprequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
  									</div>
  								</tr>
  							</thead>

@@ -157,14 +157,15 @@ if($method == 'update'){
                 echo '<td>'.$x['training_code'].'</td>';
                 echo '<td>'.$x['training_type'].'</td>';
                 echo '<td>'.$x['process'].'</td>';
+                 echo '<td>'.$x['trainer'].'</td>';
+                echo '<td>'.$x['location'].'</td>';
                 echo '<td>'.$x['slot'].'</td>';
                 echo '<td>'.$x['shift'].'</td>';
                 echo '<td>'.$x['start_date'].'</td>';
                 echo '<td>'.$x['start_time'].'</td>';
                 echo '<td>'.$x['end_date'].'</td>';
                 echo '<td>'.$x['end_time'].'</td>';
-                echo '<td>'.$x['trainer'].'</td>';
-                echo '<td>'.$x['location'].'</td>';
+               
                 echo '<td>'.$x['create_by'].'</td>';
                 echo '<td>'.$x['updated_by'].'</td>';
 
@@ -646,7 +647,7 @@ if($method == 'fetch_for_training2'){
          $c = 0;
     
 
-    $query = "SELECT trs_training_sched.id,trs_training_sched.process,trs_training_sched.training_code,trs_training_sched.training_type,trs_training_sched.start_time,TIME_FORMAT(trs_training_sched.start_time, '%H:%i:%s') as start_time,trs_training_sched.end_time,TIME_FORMAT(trs_training_sched.end_time, '%H:%i:%s') as end_time,trs_training_sched.location,trs_for_training.id,trs_for_training.employee_num,trs_request.full_name,trs_for_training.ojt_period,trs_training_sched.start_date,trs_training_sched.end_date,trs_for_training.process,trs_request.requested_by
+    $query = "SELECT trs_training_sched.id,trs_training_sched.process,trs_training_sched.training_code,trs_training_sched.training_type,trs_training_sched.start_time,TIME_FORMAT(trs_training_sched.start_time, '%H:%i:%s') as start_time,trs_training_sched.end_time,TIME_FORMAT(trs_training_sched.end_time, '%H:%i:%s') as end_time,trs_training_sched.location,trs_for_training.id,trs_for_training.employee_num,trs_request.full_name,trs_for_training.ojt_period,trs_training_sched.start_date,trs_training_sched.end_date,trs_for_training.process,trs_request.requested_by,trs_request.batch_no
         
         FROM trs_training_sched
         LEFT JOIN trs_for_training ON trs_for_training.training_code = trs_training_sched.training_code
@@ -672,6 +673,7 @@ if($method == 'fetch_for_training2'){
                         </p>
                     </td>';
                       echo '<td>'.$c.'</td>';
+                      echo '<td>'.$x['batch_no'].'</td>';
                     echo '<td>'.$x['employee_num'].'</td>';
 
                      echo '<td>'.$x['full_name'].'</td>';
@@ -922,7 +924,7 @@ trs_request.position,trs_request.department,
 trs_request.full_name,trs_training_sched.trainer
 ,date_format(trs_for_training.training_start_date, '%m-%d-%Y') as training_start_date
 	,date_format(trs_for_training.training_end_date, '%m-%d-%Y') as training_end_date,
-    trs_request.requested_by
+    trs_request.requested_by,trs_request.batch_no
 
 
 FROM trs_for_training
@@ -948,6 +950,7 @@ AND trs_for_training.training_type = '$training_type'
                  echo '<td>'.$c.'</td>';
                      echo '<td>'.$x['training_code'].'</td>';
                          echo '<td>'.$x['training_type'].'</td>';
+                         echo '<td>'.$x['batch_no'].'</td>';
                     echo '<td>'.$x['employee_num'].'</td>';
                      echo '<td>'.$x['full_name'].'</td>';
                   echo '<td>'.$x['position'].'</td>';
@@ -989,7 +992,7 @@ trs_for_training.id,trs_for_training.training_code,trs_for_training.employee_num
 trs_for_training.process, trs_for_training.ojt_start,trs_for_training.ojt_end, trs_request.full_name
 ,date_format(trs_for_training.ojt_start, '%m-%d-%Y') as ojt_start
 	,date_format(trs_for_training.ojt_end, '%m-%d-%Y') as ojt_end,
-    trs_request.requested_by
+    trs_request.requested_by,trs_request.batch_no
 FROM trs_for_training 
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
 WHERE  trs_for_training.training_code = '$training_code' AND trs_for_training.confirmation != 0 AND trs_for_training.confirmation = 5 
@@ -1011,7 +1014,7 @@ GROUP BY trs_for_training.training_type, trs_for_training.employee_num
                 
                  echo '<td>'.$c.'</td>';
                      echo '<td>'.$x['training_code'].'</td>';
-                      
+                      echo '<td>'.$x['batch_no'].'</td>';
                     echo '<td>'.$x['employee_num'].'</td>';
                      echo '<td>'.$x['full_name'].'</td>';
                         echo '<td>'.$x['training_type'].'</td>';

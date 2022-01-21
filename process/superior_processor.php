@@ -67,6 +67,7 @@ $query = "SELECT *,date_format(request_date_time, '%m-%d-%Y %H:%i:%s') as reques
                     </p>';
                 echo '</td>';
                 	echo '<td>'.$c.'</td>';
+                	echo '<td>'.$x['batch_no'].'</td>';
             		echo '<td>'.$x['employee_num'].'</td>';
             		echo '<td>'.$x['full_name'].'</td>';
             		echo '<td>'.$x['position'].'</td>';
@@ -148,7 +149,7 @@ if ($method == 'fetch_approve_request_superior') {
 		$c = 0;
 	$query = "SELECT id,batch_number, approval_status, approval_date	
     ,date_format(approval_date, '%m-%d-%Y') as approval_date
-	 FROM trs_request WHERE approval_status = 2 AND (approval_date >='$dateFrom 00:00:00' AND approval_date <= '$dateTo 23:59:59') AND esection = '$esection' GROUP BY batch_number";
+	 FROM trs_request WHERE approval_status = 2 AND (approval_date >='$dateFrom 00:00:00' AND approval_date <= '$dateTo 23:59:59') AND esection = '$esection' GROUP BY batch_number ORDER BY approval_date ASC";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -184,7 +185,7 @@ if ($method == 'fetch_cancel_request_superior') {
 	,date_format(cancel_date, '%m-%d-%Y') as cancel_date
 	,date_format(qualifcancel_date, '%m-%d-%Y') as qualifcancel_date
 	FROM trs_request WHERE approval_status = 0 AND (cancel_date >='$dateFrom 00:00:00' AND cancel_date <= '$dateTo 23:59:59') AND esection = '$esection'
-GROUP BY batch_number";
+GROUP BY batch_number ORDER BY cancel_date,qualifcancel_date ASC";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -234,6 +235,7 @@ GROUP BY batch_number";
                 echo '<tr>';
 
             		echo '<td>'.$c.'</td>';
+            		echo '<td>'.$x['batch_no'].'</td>';
             		echo '<td>'.$x['employee_num'].'</td>';
             		echo '<td>'.$x['full_name'].'</td>';
             		echo '<td>'.$x['position'].'</td>';
@@ -276,6 +278,7 @@ GROUP BY batch_number";
            
                 echo '<tr>';
                 	echo '<td>'.$c.'</td>';
+                	echo '<td>'.$x['batch_no'].'</td>';
             		echo '<td>'.$x['employee_num'].'</td>';
             		echo '<td>'.$x['full_name'].'</td>';
             		echo '<td>'.$x['position'].'</td>';
@@ -339,7 +342,7 @@ if ($method == 'fetch_for_failed_sup') {
 
 $query = "SELECT trs_for_training.last_status, trs_for_training.id, trs_for_training.employee_num, trs_for_training.training_code,trs_for_training.ojt_end,trs_for_training.ojt_status,
 trs_for_training.eval_submit_date,trs_for_training.extend_days,trs_for_training.eval_remarks,trs_for_training.auth_date,Date_FORMAT(auth_date, '%Y-%m-%d %H:%i:%s') as auth_date,trs_for_training.exam_status,trs_for_training.examiner,
-trs_request.full_name,trs_request.eprocess,trs_request.training_type
+trs_request.full_name,trs_request.eprocess,trs_request.training_type,trs_request.batch_no,trs_for_training.attend_exam,trs_for_training.did_not_attend_exam
 
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
@@ -358,9 +361,12 @@ WHERE trs_for_training.training_code = '$training_code' AND trs_for_training.con
               
                 echo '<td>'.$c.'</td>';
                 echo '<td>'.$x['training_code'].'</td>';
+                 echo '<td>'.$x['batch_no'].'</td>';
                 echo '<td>'.$x['employee_num'].'</td>';
                 echo '<td>'.$x['full_name'].'</td>';
                 echo '<td>'.$x['auth_date'].'</td>';
+                echo '<td>'.$x['attend_exam'].'</td>';
+                echo '<td>'.$x['did_not_attend_exam'].'</td>';
                 echo '<td>'.$x['exam_status'].'</td>';
                  echo '<td>'.$x['examiner'].'</td>';
                 echo '<td>'.$x['last_status'].'</td>';

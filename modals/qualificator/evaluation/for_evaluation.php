@@ -1,5 +1,3 @@
-
-
 <div class="modal fade bd-example-modal-xl" id="check_eval" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
@@ -88,6 +86,7 @@
                     </th>
                     <th>#</th>
                     <th>Training Code</th>
+                    <th>Batch No.</th>
                     <th>Employee No.</th>
                     <th>Full Name</th>
                     <th>Training Type</th>

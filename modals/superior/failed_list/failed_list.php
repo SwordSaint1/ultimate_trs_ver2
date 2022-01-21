@@ -24,9 +24,12 @@
                       <thead style="text-align:center;">
                      <th>#</th>
                     <th>Training Code</th>
+                    <th>Batch No.</th>
                     <th>Employee No.</th>
                     <th>Full Name</th>
                     <th>Authorization Date</th>
+                    <th>Attend</th>
+                    <th>Did Not Attend</th>
                      <th>Exam Status</th>
                     <th>Examiner</th>
                     <th>Last Status</th>

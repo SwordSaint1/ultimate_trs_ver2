@@ -2,7 +2,7 @@
 	 $(document).ready(function(){
     load_approved_list_req_superior();
 
-    });	
+    });	 
 
 //function approved tab
 

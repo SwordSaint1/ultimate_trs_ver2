@@ -48,7 +48,7 @@ const get_check_exam_passed_req =(param)=>{
             training_code:training_code
         },success:function(response){
             document.getElementById('data_passed_list_req').innerHTML = response;
-           
+            
 
         }
     });

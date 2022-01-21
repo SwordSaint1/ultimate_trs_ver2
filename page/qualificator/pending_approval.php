@@ -1,5 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
-<?php include 'plugins/sidebar/cancel_requestbar.php'; ?>
+<?php include 'plugins/sidebar/pending_approvalbar.php'; ?>
 
   <section class="content">
       <div class="container-fluid">
@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dis-Approved Request</h1>
+            <h1 class="m-0">Pending Approval Request</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dis-Approved Request</li>
+              <li class="breadcrumb-item active">Pending Approval Request</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -35,12 +35,12 @@
  							<thead>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Cancelled Date From:</span> <input type="date" id="cancel_suprequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
+ 									<span for="">Requested Date From:</span> <input type="date" id="pending_approval_qualifrequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Cancelled Date To:</span>  <input type="date" id="cancel_suprequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Requested Date To:</span>  <input type="date" id="pending_approval_qualifrequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
  									</div>
  								</tr>
  							</thead>
@@ -50,7 +50,7 @@
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 100px;">
-                    <button class="btn btn-primary" id="searchReqBtn" onclick="load_cancelled_list_superior()">Search <i class="fas fa-search"></i></button> 
+                    <button class="btn btn-primary" id="searchReqBtn" onclick="load_pendingapproval_qualificator()">Search <i class="fas fa-search"></i></button> 
                   </div>
                 </div>
               </div>
@@ -60,10 +60,10 @@
                  <thead>
                     <th style="text-align:center;">#</th>
                     <th style="text-align:center;">Request Code</th>
-                    <th style="text-align:center;">Date Cancelled</th>
+                    <th style="text-align:center;">Request Date</th>
                 
                 </thead>
-                <tbody id="cancel_data" style="text-align:center;"></tbody>
+                <tbody id="pendingapproval_qualif_data" style="text-align:center;"></tbody>
                 </table>
               </div>
               <!-- /.card-body -->
@@ -78,4 +78,4 @@
 
 
 <?php include 'plugins/footer.php'; ?>
-<?php include 'plugins/javascript/cancelled_script.php'; ?>
+<?php include 'plugins/javascript/pendingapproval_script.php'; ?>

@@ -92,11 +92,13 @@
               <div class="card-body table-responsive p-0" style="height: 420px; zoom:90%;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="history_export">
                  <thead style="text-align:center;">
-                <th> # </th>     
+                <th> # </th>   
+                <th> Batch No:</th>  
                 <th> Employee No:</th>
                 <th> Full Name</th>
                 <th>Superior Approval/Cancelled Date</th>
                 <th>Qualificator Approval Status </th>
+                <th>Validation Remarks</th>
                  <th>Requested By </th>
                 <th>Training Start Date </th>
                 <th>Training End Date </th>

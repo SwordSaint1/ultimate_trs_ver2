@@ -50,6 +50,12 @@
                   <p>Pending Request</p>
                 </a>
               </li>
+                <li class="nav-item">
+                <a href="pending_approval.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pending Approval Req</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="approve_request.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>

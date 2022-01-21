@@ -3,7 +3,9 @@
 include '../../modals/logout.php';
 include '../../modals/qualificator/request/request_approved.php';
 include '../../modals/qualificator/request/request_cancelled.php';
+include '../../modals/qualificator/request/request_pending_approval.php';
 include '../../modals/qualificator/request/request_details.php';
+include '../../modals/qualificator/dashboard/dashboard.php';
 include '../../modals/qualificator/evaluation/for_evaluation.php';
 include '../../modals/qualificator/evaluation/evaluation_result.php';
 include '../../modals/qualificator/evaluation/evaluation_cancel.php';

@@ -10,7 +10,7 @@
        var esection = '<?=$esection;?>';
        var dateFrom = document.getElementById('pending_suprequestDateFrom').value;
     var dateTo = document.getElementById('pending_suprequestDateTo').value;
-
+ 
         // console.log(role);
             $.ajax({
                 url: '../../process/superior_processor.php',
@@ -44,7 +44,7 @@ const get_req =(param)=>{
     $('#batch_number_prev_superior').val(batch_number);
     $('#approval_status_prev_superior').val(approval_status);
     $('#req_date_time_prev_superior').val(request_date_time);
-   
+    
     $.ajax({
         url:'../../process/superior_processor.php',
         type: 'POST',

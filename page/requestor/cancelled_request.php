@@ -34,12 +34,12 @@
  							<thead>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Requested Date From:</span> <input type="date" id="cancelrequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
+ 									<span for="">Cancelled Date From:</span> <input type="date" id="cancelrequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>
  									<div class="col-sm-6">
- 									<span for="">Requested Date To:</span>  <input type="date" id="cancelrequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
+ 									<span for="">Cancelled Date To:</span>  <input type="date" id="cancelrequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
  									</div>
  								</tr>
  							</thead>

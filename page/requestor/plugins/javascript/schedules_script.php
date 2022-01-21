@@ -27,7 +27,7 @@ const load_sched_list =()=>{
                 },success:function(response){
                     console.log(response);
                     document.getElementById('updated_sched_list').innerHTML = response;
-               
+                
                 }
             });
    
