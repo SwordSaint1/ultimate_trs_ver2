@@ -9,22 +9,22 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+         <div class="modal-body">
           <div class="row">
             <div class="col-12">
-            <label>Announcement Date:</label>  <input type="datetime-local" name="" class="form-control">
+            <label>Announcement Date:</label>  <input type="date" name="announcement_date_training" id="announcement_date_training" class="form-control" value="<?=$server_date_only;?>">
             </div>
     <div class="col s12">
        <label>Announcement Content:</label> 
-       <textarea class="form-control" cols="50" rows="10">
+       <input type="text" name="content_training" id="content_training" class="form-control">
          
        </textarea>
        </div>
     </div>     
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary"  onclick="register_announcements()"
-        class="close" data-dismiss="modal" aria-label="Close" onclick="javascript:window.location.reload()">Register Section</button>
+        <button type="button" class="btn btn-primary"  onclick="register_announcements_training()"
+        class="close" data-dismiss="modal" aria-label="Close" onclick="javascript:window.location.reload()">Register Announcement</button>
        
       </div>
     </div>

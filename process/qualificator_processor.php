@@ -2134,4 +2134,21 @@ AND trs_for_training.eval_status = 'Cancel' GROUP BY trs_for_training.employee_n
 
 }
 
+//insert announcement
+if ($method == 'insert_announcement') {
+    $section = $_POST['section'];
+    $announcement_date = $_POST['announcement_date'];
+    $content = trim($_POST['content']);
+
+    $insert = "INSERT INTO trs_announcement (`content`,`date_created`,`esection`) VALUES ('$content','$announcement_date','$section')";
+
+    $stmt = $conn->prepare($insert);
+    if ($stmt->execute()) {
+        echo 'Successfully Register';
+    }else{
+        echo 'error';
+    }
+}
+
+
 ?>

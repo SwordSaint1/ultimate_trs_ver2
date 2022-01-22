@@ -1075,4 +1075,21 @@ GROUP BY trs_for_training.training_type, trs_for_training.employee_num
         }
 } 
 
+//insert announcement
+if ($method == 'insert_announcement_training') {
+    $section = $_POST['section'];
+    $announcement_date = $_POST['announcement_date'];
+    $content = trim($_POST['content']);
+
+    $insert = "INSERT INTO trs_announcement (`content`,`date_created`,`esection`) VALUES ('$content','$announcement_date','$section')";
+
+    $stmt = $conn->prepare($insert);
+    if ($stmt->execute()) {
+        echo 'Successfully Register';
+    }else{
+        echo 'error';
+    }
+}
+
+
 ?>
