@@ -138,3 +138,4 @@
 
 
 <?php include 'plugins/footer.php';?>
+<?php include 'plugins/javascript/dashboard_script.php'; ?>
