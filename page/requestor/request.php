@@ -1,7 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
 <?php include 'plugins/sidebar/requestbar.php'; ?>
-
-
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -42,18 +40,9 @@
 
                 <div class="card-footer">
                   <a href="#" class="btn btn-primary col-md-4 btn-lg" data-toggle="modal" data-target="#request" onclick="create_request()"> <i class="fa fa-edit"></i> Request Training</a>
-
-                  
-
                 </div>
               </form>
             </div>
             <!-- /.card -->
-
-
-
-
 <?php  include 'plugins/javascript/script.php';?>
-
-
 <?php include 'plugins/footer.php'; ?>

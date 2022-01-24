@@ -29,11 +29,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-         $('.noSpace').keyup(function() {
- this.value = this.value.replace(/\s/g,'');
-});
-  });
-</script>

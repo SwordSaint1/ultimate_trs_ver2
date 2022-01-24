@@ -9,6 +9,8 @@ include '../../modals/training/for_training/process_for_training.php';
 include '../../modals/training/attendance/attendance_reportlist.php';
 include '../../modals/training/ojt_list/view_ojt_list.php';
 include '../../modals/training/dashboard/dashboard.php';
+include '../../modals/training/dashboard/announcement_list.php';
+include '../../modals/training/dashboard/edit_announcement.php';
 ?>
 <!-- jQuery -->
 <!-- <script src="../../plugins/jquery/jquery.min.js"></script> -->

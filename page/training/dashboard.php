@@ -20,7 +20,9 @@
       </div>
     </section>
 
-      <div class="row">
+     
+
+            <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
@@ -29,7 +31,15 @@
                         <table>
                           <thead>
                             <tr>
-                              <a href="#" class="btn btn-primary col-md-12 btn-lg" data-toggle="modal" data-target="#newannouncement_training"> <i class="fa fa-edit"></i> Add Announcement</a>
+                                <div class="col-sm-6">
+                              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#newannouncement_training">Add&nbsp;Announcement</a>
+
+                            </div>
+                            </tr>
+                             <tr>
+                                <div class="col-sm-6">
+                              <a href="#" class="btn btn-info" data-toggle="modal" data-target="#announcementlist_training">Announcements&nbsp;List</a>
+                            </div>
                             </tr>
                           </thead>
                         </table>
@@ -39,6 +49,7 @@
               </div>
             </div>
           </div>
+
 
 
       <section class="content pb-3">

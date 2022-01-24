@@ -2150,5 +2150,52 @@ if ($method == 'insert_announcement') {
     }
 }
 
+if ($method == 'fetch_announcement_list') {
+        $role = $_POST['role'];
+        $section_list = $_POST['section_list'];
+        $c = 0;
+    $query = "SELECT * FROM trs_announcement WHERE esection = '$section_list' GROUP BY id ORDER BY date_created ASC";
+
+
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        foreach($stmt->fetchALL() as $x){
+        $c++;
+
+            if ($role == 'qualificator') {
+                echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#edit_announcement" onclick="get_edit_announcement(&quot;'.$x['id'].'~!~'.$x['date_created'].'~!~'.$x['content'].'&quot;)">';
+                echo '<td>'.$c.'</td>';
+                 echo '<td>'.$x['date_created'].'</td>';
+                echo '<td>'.$x['content'].'</td>';
+               
+                echo '</tr>';
+            }
+    }
+}else{
+        echo '<tr>';
+            echo '<td colspan="3" style="text-align:center;">NO RESULT</td>';
+            echo '</tr>';
+            }
+    }
+
+
+if($method == 'update_announce'){
+        $id = trim($_POST['id']); 
+        $date_created = trim($_POST['date_created']);
+        $content= trim($_POST['content']);   
+        $esection = trim($_POST['esection']);
+        
+
+        // SQL
+        $update = "UPDATE trs_announcement SET date_created='$date_created', content = '$content', esection = '$esection' WHERE id = '$id'";
+        $stmt = $conn->prepare($update);
+        if($stmt->execute()){
+            echo 'success';
+        }else{
+            echo 'error';
+        }
+    }
+
 
 ?>

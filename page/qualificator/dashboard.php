@@ -29,7 +29,15 @@
                         <table>
                           <thead>
                             <tr>
-                              <a href="#" class="btn btn-primary col-md-12 btn-lg" data-toggle="modal" data-target="#newannouncement"> <i class="fa fa-edit"></i> Add Announcement</a>
+                                <div class="col-sm-6">
+                              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#newannouncement">Add&nbsp;Announcement</a>
+
+                            </div>
+                            </tr>
+                             <tr>
+                                <div class="col-sm-6">
+                              <a href="#" class="btn btn-info" data-toggle="modal" data-target="#announcementlist">Announcements&nbsp;List</a>
+                            </div>
                             </tr>
                           </thead>
                         </table>
