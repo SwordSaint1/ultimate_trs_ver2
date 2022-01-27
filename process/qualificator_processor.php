@@ -478,6 +478,46 @@ if ($method == 'update_for_cancel') {
 } 
 
 
+if ($method == 'undo_qualif') {
+    $id = [];
+    $id = $_POST['id'];
+    $newbatch_number = $_POST['newbatch_number'];
+    $reason = $_POST['reason']; 
+    //COUNT OF ITEM TO BE UPDATED
+    $count = count($id);
+    foreach($id as $x){
+
+        $select = "SELECT employee_num FROM trs_qualif WHERE id = '$x'";
+        $stmt4 =  $conn->prepare($select);
+        $stmt4->execute();
+        foreach($stmt4->fetchALL()as $j){
+            $employee_num = $j['employee_num'];
+
+            $delete = "DELETE FROM trs_qualif WHERE id = '$x'";
+            $stmt = $conn->prepare($delete);
+            if ($stmt->execute()) {
+                $update = "UPDATE trs_request SET approval_status = 2, qualifapproval_date = NULL WHERE employee_num = '$employee_num' AND batch_number = '$newbatch_number'";
+                $stmt2 = $conn->prepare($update);
+            }if ($stmt2->execute()) {
+            // echo 'approved';
+            $count = $count - 1;
+        }else{
+            // echo 'error';
+        }
+
+        }
+
+     
+        
+    }
+        if($count == 0){
+            echo 'success';
+        }else{
+            echo 'fail';
+        }
+} 
+
+
 
 if($method == 'prevbatchApp_qualifedit'){
         $id = trim($_POST['id']); 

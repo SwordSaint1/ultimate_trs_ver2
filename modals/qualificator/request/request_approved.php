@@ -22,17 +22,21 @@
             <table>
               <thead>
                 <tr>
-                  <div class="col-sm-6">
+                  <div class="col-sm-4">
                   <button class="btn btn-secondary" onclick="uncheck_all()">Uncheck</button> 
                   </div>
                 </tr>
                
                 <tr>
-                  <div class="col-sm-6">
+                  <div class="col-sm-4">
                   <button class="btn btn-danger" onclick="update_for_cancel()" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">Cancel</button> 
                   </div>
                 </tr>
-
+                 <tr>
+                  <div class="col-sm-4">
+                  <button class="btn btn-warning" onclick="undo()" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">Back&nbsp;to&nbsp;Pending</button> 
+                  </div>
+                </tr>
                 
               </thead>
             </table>
