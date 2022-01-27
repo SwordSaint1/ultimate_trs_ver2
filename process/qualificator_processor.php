@@ -483,7 +483,7 @@ if ($method == 'undo_qualif') {
     $id = $_POST['id'];
     $newbatch_number = $_POST['newbatch_number'];
     $reason = $_POST['reason']; 
-    //COUNT OF ITEM TO BE UPDATED
+    //COUNT OF ITEM TO BE UPDATED 
     $count = count($id);
     foreach($id as $x){
 

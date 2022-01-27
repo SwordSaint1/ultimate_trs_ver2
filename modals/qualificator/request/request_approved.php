@@ -29,7 +29,7 @@
                
                 <tr>
                   <div class="col-sm-4">
-                  <button class="btn btn-danger" onclick="update_for_cancel()" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">Cancel</button> 
+                  <button class="btn btn-danger" onclick="update_for_cancel()" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">Cancel</button>  
                   </div>
                 </tr>
                  <tr>
