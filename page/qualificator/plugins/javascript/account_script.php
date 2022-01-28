@@ -6,6 +6,7 @@ const load_accounts =()=>{
      // var dateTo = document.getElementById('accDateCreatedTo').value;
      var roles = document.getElementById('role_search').value;
      var section = document.getElementById('section_acc_search').value;
+
            $.ajax({
                 url: '../../process/qualificator_processor.php',
                 type: 'POST',
@@ -30,6 +31,8 @@ const load_accounts =()=>{
             var full_name = $('#full_name').val();
             var role = $('#role').val();
             var esection = $('#esection').val();
+            var created_by = $('#created_by_accounts').val();
+
             if (username == '') {
                     swal('INFORMATION','Please Input Username','info');
                      $('#username').val('');
@@ -82,7 +85,8 @@ const load_accounts =()=>{
                 password: password,
                 full_name: full_name,
                 role: role,
-                esection: esection
+                esection: esection,
+                created_by:created_by
             },success:function(response){
                 // console.log(response);
                 if(response == 'success') {
@@ -143,7 +147,7 @@ const load_accounts =()=>{
             var full_name = $('#full_name_edit').val();
             var role = $('#role_edit').val();
             var esection = $('#esection_edit').val();
-
+            var updated_by = $('#updated_by_accounts').val();
  
         $.ajax({
         url: '../../process/qualificator_processor.php',
@@ -156,7 +160,8 @@ const load_accounts =()=>{
                 password: password,
                 full_name: full_name,
                 role: role,
-                esection: esection
+                esection: esection,
+                updated_by:updated_by
            
         },success:function(i){
             console.log(i);
@@ -171,4 +176,33 @@ const load_accounts =()=>{
         }
     });
     }
+
+function export_accounts(table_id, separator = ',') {
+    // Select rows from table_id
+    var rows = document.querySelectorAll('table#' + table_id + ' tr');
+    // Construct csv
+    var csv = [];
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++) {
+            var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+            data = data.replace(/"/g, '""');
+            // Push escaped string
+            row.push('"' + data + '"');
+        }
+        csv.push(row.join(separator));
+    }
+    var csv_string = csv.join('\n');
+    // Download it
+    var filename = 'Account_List'+ '_' + new Date().toLocaleDateString() + '.csv';
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+ 
 </script>

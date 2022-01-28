@@ -34,7 +34,7 @@
             <table>
               <thead>
                 <tr>
-                  <div class="col-5">
+                  <div class="col-3">
                     <select id="role_search" class="form-control role_search">
                             <option value="">Select Role</option>
                           <?php
@@ -50,7 +50,7 @@
                   </div>
                 </tr>
                 <tr>
-                  <div class="col-4">
+                  <div class="col-3">
                     <select id="section_acc_search" class="form-control">
                       <option value="">Select Section</option>
                         <?php
@@ -68,11 +68,19 @@
                   </div>
                 </tr>
                 <tr>
-                  <div class="col-1">
-                  <a href="#" class="btn btn-primary"
-                  class="nav-link" data-toggle="modal" data-target="#new_account">Register&nbsp;Account</a>
+                  <div class="col-3">
+             
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#new_account">Register&nbsp;Account</button>
                   </div>
                 </tr>
+                 <tr>
+                  <div class="col-3">
+             
+                 
+                   <button class="btn btn-success " onclick="export_accounts('accounts')">Export</button>  
+                  </div>
+                </tr>
+                
               </thead>
             </table>
           </div>
@@ -84,10 +92,19 @@
                   </div>
                 </div>
               </div>
-            
+         
+            <!--   <div class="row">
+                <div class="col-12">
+                  <p style="text-align:right;">
+                  <button class="btn btn-success">Export</button>
+                </p>
+                </div>
+              </div> -->
+
+
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 420px;">
-                <table class="table table-head-fixed text-nowrap table-hover">
+                <table class="table table-head-fixed text-nowrap table-hover" id="accounts">
                  <thead style="text-align:center;">
                     <th> # </th>
                     <th> Username</th>
@@ -95,6 +112,8 @@
                     <th>Password</th>
                     <th> Role</th>
                     <th> Section</th>
+                    <th> Created By</th>
+                    <th> Updated By</th>
                 
                 </thead>
                 <tbody id="accounts_data" style="text-align:center;"></tbody>

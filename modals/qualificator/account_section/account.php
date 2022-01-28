@@ -18,6 +18,7 @@
               <div class="card-header">
                 <h3 class="card-title"> 
                 <h4>Register Account</h4>
+                <input type="hidden" name="created_by_accounts" id="created_by_accounts" value="<?=$full_name;?>">
                 </h3>
               </div>
               <!-- /.card-header -->

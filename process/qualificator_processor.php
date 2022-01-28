@@ -840,7 +840,7 @@ trs_qualif.qualif_cancel_date IS NOT NULL
         $full_name = $_POST['full_name'];
         $role = $_POST['role'];
         $esection = $_POST['esection'];
-
+        $created_by = $_POST['created_by'];
 
 
         $check = "SELECT id FROM trs_accounts WHERE username = '$username'";
@@ -852,7 +852,7 @@ trs_qualif.qualif_cancel_date IS NOT NULL
         echo 'x';
     
     }else{
-         $insert = "INSERT INTO trs_accounts (`username`, `password`, `full_name`, `role`, `esection`, `date_created`) VALUES ('$username', '$password', '$full_name', '$role', '$esection', '$server_date_only')";
+         $insert = "INSERT INTO trs_accounts (`username`, `password`, `full_name`, `role`, `esection`, `date_created`,`created_by`) VALUES ('$username', '$password', '$full_name', '$role', '$esection', '$server_date_only','$created_by')";
         $stmt = $conn->prepare($insert);
         if($stmt->execute()){
             echo 'success';
@@ -885,7 +885,8 @@ trs_qualif.qualif_cancel_date IS NOT NULL
                 echo '<td>'.$x['password'].'</td>';
                 echo '<td>'.$x['role'].'</td>';
                 echo '<td>'.$x['esection'].'</td>';
-  
+                echo '<td>'.$x['created_by'].'</td>';
+                echo '<td>'.$x['updated_by'].'</td>';
                 echo '</tr>';
             }
     }
@@ -989,8 +990,9 @@ if($method == 'update_accounts'){
         $full_name = trim($_POST['full_name']);
          $role= trim($_POST['role']);
         $esection = trim($_POST['esection']);
+        $updated_by = $_POST['updated_by'];
         // SQL
-        $update = "UPDATE trs_accounts SET username = '$username', password = '$password', full_name = '$full_name', role = '$role', esection = '$esection' WHERE id = '$id'";
+        $update = "UPDATE trs_accounts SET username = '$username', password = '$password', full_name = '$full_name', role = '$role', esection = '$esection',updated_by = '$updated_by' WHERE id = '$id'";
         $stmt = $conn->prepare($update);
         if($stmt->execute()){
             echo 'y';
