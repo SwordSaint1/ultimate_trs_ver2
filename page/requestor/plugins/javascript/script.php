@@ -40,7 +40,7 @@ const detect_part_info =()=>{
             if(response !== ''){
                 var str = response.split('~!~');
                 document.querySelector('#full_name').value = str[0];
-                document.querySelector('#batch_no').value = str[1];
+                // document.querySelector('#batch_no').value = str[1];
                 document.querySelector('#position').value = str[2];
                 document.querySelector('#department').value = str[3];
                 document.querySelector('#section').value = str[4];
@@ -98,6 +98,8 @@ const save_request =()=> {
         swal('Notification', 'Please Enter Full Name','info');
     }else if(batch_no == ''){
         swal('Notification', 'Please Enter Batch No','info');
+    }else if(batch_no == 'N/A'){
+        swal('Notification', 'Invalid Batch No','info');
     }else if(position == ''){
          swal('Notification', 'Please Enter Position','info');
     }else if(department == ''){

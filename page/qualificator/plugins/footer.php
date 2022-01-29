@@ -5,6 +5,7 @@ include '../../modals/qualificator/request/request_approved.php';
 include '../../modals/qualificator/request/request_cancelled.php';
 include '../../modals/qualificator/request/request_pending_approval.php';
 include '../../modals/qualificator/request/request_details.php';
+include '../../modals/qualificator/request/pending_export.php';
 include '../../modals/qualificator/dashboard/dashboard.php';
 include '../../modals/qualificator/dashboard/announcement_list.php';
 include '../../modals/qualificator/dashboard/edit_announcement.php';

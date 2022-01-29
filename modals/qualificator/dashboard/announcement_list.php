@@ -22,7 +22,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap table-hover" id="req_pending_qualif_data">
+                <table class="table table-head-fixed text-nowrap table-hover" id="">
                       <thead style="text-align:center;">
                   
                     <th>#</th>

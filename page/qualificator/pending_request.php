@@ -34,16 +34,22 @@
  						<table>
  							<thead>
  								<tr>
- 									<div class="col-sm-6">
+ 									<div class="col-sm-5">
  									<span for="">Requested Date From:</span> <input type="date" id="pending_qualifrequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>
- 									<div class="col-sm-6">
+ 									<div class="col-sm-5">
  									<span for="">Requested Date To:</span>  <input type="date" id="pending_qualifrequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
  									</div>
  								</tr>
-
+                <tr>
+                    <div class="col-sm-2">
+                      <span style="color: white;">.</span>
+                 <!--  <a href="http://localhost/trs_exporting/" class="btn btn-primary" target="_blank">Go&nbsp;to&nbsp;Export&nbsp;All</a> -->
+                  <a href="#" class="btn btn-primary " data-toggle="modal" data-target="#export" onclick="load_all_pending_export()">Export&nbsp;All</a>
+                </div>
+                </tr>
  							</thead>
  						</table>
  					</div>

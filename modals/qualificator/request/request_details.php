@@ -88,6 +88,7 @@
                       <input type="checkbox" name="" id="check_all_pending_qualif" onclick="select_all_func()">
                     </th>
                     <th>#</th>
+                    <th>Request Code</th>
                      <th>Batch No.</th>
                     <th>Employee No.</th>
                     <th>Full Name</th>
