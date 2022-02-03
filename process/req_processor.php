@@ -1734,8 +1734,8 @@ if ($last_status == 'Retain') {
 			$stmt = $conn->prepare($insert_into);
  
 				if ($stmt->execute()) {
-	$approve = "UPDATE trs_for_training SET confirmation = 5, ojt_status = '', eval_remarks = '', extend_days = '', eval_status = '', eval_submit = '', auth_date = '', examiner = '', exam_remarks = '', attend_exam = '',
-			did_not_attend_exam = '', exam_status = '', last_status = '$last_status', ojt_start = '$ojt_startt', ojt_end = '$end_datee', attempt = '0' WHERE attend_exam !='' AND id = '$x'";
+	$approve = "UPDATE trs_for_training SET confirmation = 5, ojt_status = NULL, eval_remarks = NULL, extend_days = NULL, eval_status = NULL, eval_submit = NULL, auth_date = NULL, examiner = NULL, exam_remarks = NULL, attend_exam = NULL,
+			did_not_attend_exam = NULL, exam_status = NULL, last_status = '$last_status', ojt_start = '$ojt_startt', ojt_end = '$end_datee', attempt = '0' WHERE attend_exam !='' AND id = '$x'";
         $stmt2 = $conn->prepare($approve);
 
         if ($stmt2->execute()) {
@@ -1800,7 +1800,7 @@ if ($last_status == 'Retain') {
     $count = count($id);
     foreach($id as $x){
 
-        $approve = "UPDATE trs_for_training SET ojt_status = '', eval_submit = '', eval_submit_date = '(NULL)',eval_status ='',auth_date='(NULL)',examiner='' WHERE id = '$x'";
+        $approve = "UPDATE trs_for_training SET ojt_status = NULL, eval_submit = NULL, eval_submit_date = NULL,eval_status = NULL,auth_date = NULL,examiner = NULL WHERE id = '$x'";
         $stmt = $conn->prepare($approve);
         if ($stmt->execute()) {
             // echo 'approved';
@@ -2430,7 +2430,7 @@ if ($method == 'fetch_ojt_done') {
 e_r_for_training.process, e_r_for_training.ojt_start,e_r_for_training.ojt_end, e_r_for_training.ojt_status, e_r_req.full_name
 from e_r_for_training
 left join e_r_req on e_r_for_training.employee_no = e_r_req.employee_num
-where e_r_for_training.ojt_status = 'Done' AND e_r_for_training.eval_submit == '' AND e_r_for_training.training_code = '$training_code'";
+where e_r_for_training.ojt_status = 'Done' AND e_r_for_training.eval_submit = '' AND e_r_for_training.training_code = '$training_code'";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {

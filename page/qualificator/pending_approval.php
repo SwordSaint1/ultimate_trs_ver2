@@ -30,19 +30,26 @@
               <div class="card-header">
                 <h3 class="card-title">
                 		<div class="row">
-                      
+                       
  						<table>
  							<thead>
  								<tr>
- 									<div class="col-sm-6">
+ 									<div class="col-sm-5">
  									<span for="">Requested Date From:</span> <input type="date" id="pending_approval_qualifrequestDateFrom" class="form-control" value="<?=$server_date_month;?>" autocomplete=off>
  									</div>
  								</tr>
  								<tr>
- 									<div class="col-sm-6">
+ 									<div class="col-sm-5">
  									<span for="">Requested Date To:</span>  <input type="date" id="pending_approval_qualifrequestDateTo" class="form-control" value="<?=$server_date_only;?>" autocomplete=off>
  									</div>
  								</tr>
+                 <tr>
+                    <div class="col-sm-2">
+                      <span style="color: white;">.</span>
+                 <!--  <a href="http://localhost/trs_exporting/" class="btn btn-primary" target="_blank">Go&nbsp;to&nbsp;Export&nbsp;All</a> -->
+                  <a href="#" class="btn btn-primary " data-toggle="modal" data-target="#export_pending_approval" onclick="load_all_pending_export_pending_approval()">Export&nbsp;All</a>
+                </div>
+                </tr>
  							</thead>
  						</table>
  					</div>
@@ -50,7 +57,7 @@
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 100px;">
-                    <button class="btn btn-primary" id="searchReqBtn" onclick="load_pendingapproval_qualificator()">Search <i class="fas fa-search"></i></button> 
+                    <button class="btn btn-primary" id="searchReqBtn" onclick="load_pending_approval_qualificator()">Search <i class="fas fa-search"></i></button> 
                   </div>
                 </div>
               </div>

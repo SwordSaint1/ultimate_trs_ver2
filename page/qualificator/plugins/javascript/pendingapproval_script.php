@@ -1,18 +1,16 @@
 <script type="text/javascript">
 	 $(document).ready(function(){
     	load_pending_approval_qualificator();
-    });	
+    });	 
 
 	 //function pending tab data
 function load_pending_approval_qualificator(){
        var role = '<?=$role;?>';
        var dateFrom = document.getElementById('pending_approval_qualifrequestDateFrom').value;
     var dateTo = document.getElementById('pending_approval_qualifrequestDateTo').value;
-    // var batch = document.getElementById('batch_search_pending_qualif').value;
 
-         
-       
-        // console.log(role);
+        console.log(dateFrom);
+        console.log(dateTo);
             $.ajax({
                 url: '../../process/qualificator_processor.php',
                 type: 'POST',
@@ -295,4 +293,50 @@ const approve_pending =()=>{
 }
 }
 
+     //function pending tab data
+function load_all_pending_export_pending_approval(){
+     
+            $.ajax({
+                url: '../../process/qualificator_processor.php',
+                type: 'POST',
+                cache: false,
+                data:{
+                    method: 'fetch_all_pending_approval'
+
+                },success:function(response){
+                    // console.log(response);
+                    document.getElementById('export_pending_approval_data').innerHTML = response;
+               
+                }
+            });
+        }
+
+
+function export_all_pending_approvals(table_id, separator = ',') {
+    // Select rows from table_id
+    var rows = document.querySelectorAll('table#' + table_id + ' tr');
+    // Construct csv
+    var csv = [];
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++) {
+            var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+            data = data.replace(/"/g, '""');
+            // Push escaped string
+            row.push('"' + data + '"');
+        }
+        csv.push(row.join(separator));
+    }
+    var csv_string = csv.join('\n');
+    // Download it
+    var filename = 'ALL_PENDING_APPROVAL_LIST'+ '_' + new Date().toLocaleDateString() + '.csv';
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 </script>

@@ -1768,7 +1768,7 @@ WHERE trs_for_training.auth_date IS NOT NULL AND trs_for_training.eval_status !=
 
 
             if ($newevalstat == 'OJT Extension') {
-                $q = "UPDATE trs_for_training SET eval_status = '$newevalstat', extend_days = '$newextend',auth_date = '', eval_submit_date = ''  WHERE id = '$x'";
+                $q = "UPDATE trs_for_training SET eval_status = '$newevalstat', extend_days = '$newextend',auth_date = NULL, eval_submit_date = NULL  WHERE id = '$x'";
                 $stmt = $conn->prepare($q);
                 if ($stmt->execute()) {
 
@@ -1784,7 +1784,7 @@ WHERE trs_for_training.auth_date IS NOT NULL AND trs_for_training.eval_status !=
 
          $extension=  date('Y-m-d',(strtotime('+'.$extend_days.' day', strtotime($ojt_end))));
 
-                    $try = "UPDATE trs_for_training set ojt_end = '$extension', eval_remarks = '$newremarks', ojt_status = 'For OJT Extension', eval_submit = '', training_status = 'Passed' WHERE id = '$x'";
+                    $try = "UPDATE trs_for_training set ojt_end = '$extension', eval_remarks = '$newremarks', ojt_status = 'For OJT Extension', eval_submit = NULL, training_status = 'Passed' WHERE id = '$x'";
                     $stmt2 = $conn->prepare($try);
 
 
@@ -2237,6 +2237,41 @@ if ($method == 'fetch_all_pending') {
 
     $c=0;
     $select ="SELECT *,date_format(request_date_time, '%Y-%m-%d %H:%i:%s') as request_date_time FROM trs_request WHERE approval_status = 2 AND remarks = '' GROUP BY employee_num";
+    $stmt = $conn->prepare($select);
+    $stmt->execute();
+    if($stmt->rowCount() > 0){
+    foreach($stmt->fetchAll() as $x){
+        $c++;
+            echo '<tr>';
+                     echo '<td>'.$c.'</td>';
+                    echo '<td>'.$x['batch_number'].'</td>';
+                    echo '<td>'.$x['batch_no'].'</td>';
+                    echo '<td>'.$x['employee_num'].'</td>';
+                    echo '<td>'.$x['full_name'].'</td>';
+                    echo '<td>'.$x['position'].'</td>';
+                     echo '<td>'.$x['eprocess'].'</td>';
+                    echo '<td>'.$x['department'].'</td>';
+                    echo '<td>'.$x['section'].'</td>';
+                    echo '<td>'.$x['emline'].'</td>';
+                    echo '<td>'.$x['training_reason'].'</td>';
+                    echo '<td>'.$x['request_date_time'].'</td>';
+                    echo '<td>'.$x['requested_by'].'</td>';
+                    echo '<td>'.$x['remarks'].'</td>';
+            echo '</tr>';
+
+    }
+}else{
+        echo '<tr>';
+            echo '<td colspan="11" style="text-align:center; color:red;">NO RESULT</td>';
+            echo '</tr>';
+            }
+    }
+
+
+if ($method == 'fetch_all_pending_approval') {
+
+    $c=0;
+    $select ="SELECT *,date_format(request_date_time, '%Y-%m-%d %H:%i:%s') as request_date_time FROM trs_request WHERE approval_status = 2 AND remarks != '' GROUP BY employee_num";
     $stmt = $conn->prepare($select);
     $stmt->execute();
     if($stmt->rowCount() > 0){

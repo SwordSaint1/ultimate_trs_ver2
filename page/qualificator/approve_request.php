@@ -50,7 +50,7 @@
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 100px;">
-                    <button class="btn btn-primary" id="searchReqBtn" onclick="load_approved_list_req_qualificatorOPgive ()">Search <i class="fas fa-search"></i></button> 
+                    <button class="btn btn-primary" id="searchReqBtn" onclick="load_approved_list_req_qualificator ()">Search <i class="fas fa-search"></i></button> 
                   </div>
                 </div>
               </div>

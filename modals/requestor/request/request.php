@@ -20,7 +20,7 @@
                      <span> Employee No:   </span> <input type="text" id="employee_num" class="form-control-lg" onchange="detect_part_info()" autocomplete="OFF">
                 </div>
                 <div class="col-3">
-                     <span> Batch No:   </span> <input type="text" id="batch_no" class="form-control-lg"  autocomplete="OFF" class="noSpace">
+                     <span> Batch No:   </span> <input type="number" id="batch_no" class="form-control-lg" onkeypress="return event.charCode >= 48" min="1" autocomplete="OFF" class="noSpace">
                 </div>
                 <div class="col-3">
                      <span> Full Name:   </span> <input type="text" id="full_name" class="form-control-lg" autocomplete="OFF" class="noSpace">

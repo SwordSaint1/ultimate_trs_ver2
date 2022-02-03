@@ -383,7 +383,6 @@ if($method == 'view_updated_sched_training'){
 
     
         $c = 0;
-    // $query = "SELECT * FROM e_r_training WHERE sched_stat = 2 GROUP BY training_code";
 
 
     $query = "SELECT e_r_training.id, e_r_training.training_code, e_r_training.training_typee, e_r_training.tprocess, e_r_training.start_date, e_r_training.end_date, e_r_training.start_time, e_r_training.end_time, e_r_req.employee_num FROM e_r_training LEFT JOIN e_r_req ON e_r_training.training_code = e_r_req.training_codee WHERE e_r_req.approval_status = '4'";
@@ -429,8 +428,6 @@ if($method == 'fetch_for_training2'){
         $training_code = trim($_POST['training_code']);
         // $sched_stat= trim($_POST['sched_stat']);
            $c = 0;
-
-       // $query = "SELECT * FROM e_r_training WHERE id = '$id'";
 
            $query = "SELECT e_r_req.employee_num,e_r_req.training_type,e_r_training.tprocess,e_r_training.slot,e_r_req.start_date,e_r_req.start_time,e_r_req.end_date,e_r_req.end_time FROM e_r_req LEFT JOIN e_r_training ON e_r_req.id = e_r_training.id WHERE e_r_req.approval_status = 4 ";
 
