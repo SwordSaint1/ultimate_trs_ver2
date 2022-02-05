@@ -511,6 +511,46 @@ if ($method == 'undo_qualif') {
 } 
 
 
+if ($method == 'undo_qualif_cancel') {
+    $id = [];
+    $id = $_POST['id'];
+    $newbatch_number = $_POST['newbatch_number'];
+    //COUNT OF ITEM TO BE UPDATED
+    $count = count($id);
+    foreach($id as $x){
+        $s = "SELECT employee_num FROM trs_qualif WHERE id = '$x'";
+        $stmt = $conn->prepare($s);
+        $stmt->execute();
+        foreach($stmt->fetchALL()as $j){
+            $employee_num = $j['employee_num'];
+
+            $for_delete = "DELETE FROM trs_qualif WHERE id = '$x'";
+            $stmt2 = $conn->prepare($for_delete);
+            if ($stmt2->execute()){
+                $update_req = "UPDATE trs_request SET approval_status = 2, ft_status = '1', qualifapproval_date = NULL, qualifcancel_date = NULL, remarks = NULL WHERE employee_num = '$employee_num' AND batch_number = '$newbatch_number' ";
+                $stmt3 = $conn->prepare($update_req);
+            }
+            if ($stmt3->execute()) {
+            // echo 'approved';
+            $count = $count - 1;
+        }else{
+            // echo 'error';
+        }
+
+        }
+
+
+      
+        
+    }
+        if($count == 0){
+            echo 'success';
+        }else{
+            echo 'fail';
+        }
+} 
+
+
 
 if($method == 'prevbatchApp_qualifedit'){
         $id = trim($_POST['id']); 
@@ -762,7 +802,7 @@ if ($method == 'fetch_cancel_request_qualificator') {
 
         // $query = "SELECT * FROM trs_request WHERE batch_number = '$batch_number' AND approval_status = 0 AND qualifcancel_date != '' ";
 
-       $query = "SELECT trs_request.id,trs_request.full_name,trs_request.position,trs_request.department,trs_request.section,trs_request.emline,
+       $query = "SELECT trs_qualif.id,trs_request.full_name,trs_request.position,trs_request.department,trs_request.section,trs_request.emline,
 trs_request.training_reason,trs_request.request_date_time,date_format(request_date_time, '%Y-%m-%d %H:%i:%s') as request_date_time,trs_qualif.employee_num,trs_qualif.qualif_cancel_date,trs_qualif.qualif_remarks, trs_qualif.batch_num,trs_request.eprocess,trs_request.requested_by,trs_request.batch_no
 
 FROM trs_request
@@ -779,7 +819,14 @@ trs_qualif.qualif_cancel_date IS NOT NULL
  
            
                 echo '<tr>';
-
+                     echo '<td>';
+                echo '<p>
+                        <label>
+                            <input type="checkbox" name="" id="" class="singleCheck" value="'.$x['id'].'">
+                            <span></span>
+                        </label>
+                    </p>';
+                echo '</td>';
                     echo '<td>'.$c.'</td>';
                     echo '<td>'.$x['batch_no'].'</td>';
                     echo '<td>'.$x['employee_num'].'</td>';

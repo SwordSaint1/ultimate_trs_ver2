@@ -64,4 +64,65 @@ const get_cancel_qualificator =(param)=>{
     });
 
 }
+
+// check all and uncheck
+const uncheck_all =()=>{
+    var select_all = document.getElementById('check_all_disapproved');
+    select_all.checked = false;
+    $('.singleCheck').each(function(){
+        this.checked=false;
+    });
+}
+const select_all_func =()=>{
+    var select_all = document.getElementById('check_all_disapproved');
+    if(select_all.checked == true){
+        console.log('check');
+        $('.singleCheck').each(function(){
+            this.checked=true;
+        });
+    }else{
+        console.log('uncheck');
+        $('.singleCheck').each(function(){
+            this.checked=false;
+        }); 
+    }
+}
+
+
+const undo_cancel =()=>{
+   var arr = [];
+    $('input.singleCheck:checkbox:checked').each(function () {
+        arr.push($(this).val());
+    });
+
+    console.log(arr);
+    var numberOfChecked = arr.length;
+    if(numberOfChecked > 0){
+
+
+    var newbatch_number= document.getElementById('batch_number_cancel_qualif').value;
+
+    $.ajax({
+        url: '../../process/qualificator_processor.php',
+        type: 'POST',
+        cache: false,
+        data:{
+            method: 'undo_qualif_cancel',
+            id:arr,
+            newbatch_number:newbatch_number
+            
+        },success:function(response) {
+            console.log(response);
+            if (response == 'success') {
+                load_cancelled_list_qualificator();
+                 uncheck_all();
+                swal('INFORMATION!', 'Back to Pending', 'info');
+            }else{
+                swal('FAILED', 'FAILED', 'error');
+                 uncheck_all();
+            }
+        }
+    });
+   }
+} 
 </script>
