@@ -50,7 +50,7 @@ $check = "SELECT id FROM trs_request WHERE employee_num = '$employee_num' AND ft
 	if ($stmt->rowCount() > 0) {
 
 		// echo 'Already have Training Request!';
-		echo 'Already Have Training Request';
+		echo 'Already Have Audit Request';
 	
 	}else{
 		$insert = "INSERT INTO trs_request (`employee_num`, `batch_no`, `full_name`,`position`,`department`,`section`,`emline`,`eprocess`,`training_reason`,`batch_number`,`approval_status`,`request_date_time`,`esection`,`ojt_period`,`ft_status`,`requested_by`) VALUES('$employee_num', '$batch_no','$full_name','$position','$department','$section','$emline','$eprocess','$training_reason','$batch_number', '1','$server_date_time', '$esection', '$ojt_period', '1','$full_names')";
