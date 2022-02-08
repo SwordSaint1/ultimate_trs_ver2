@@ -92,7 +92,8 @@
               <div class="card-body table-responsive p-0" style="height: 420px; zoom:90%;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="history_export">
                  <thead style="text-align:center;">
-                <th> # </th>   
+                <th> # </th> 
+                <th> Request Code:</th>   
                 <th> Batch No:</th>  
                 <th> Employee No:</th>
                 <th> Full Name</th>
@@ -114,6 +115,21 @@
                 </thead>
                 <tbody id="history_data_qualif" style="text-align:center;"></tbody>
                 </table>
+                   <div class="row">
+                  <div class="col-6">
+                    
+                  </div>
+                  <div class="col-6">
+                      <input type="hidden" name="" id="masterlist">
+   
+                    <div class="spinner" id="spinner" style="display:none;">
+                        
+                        <div class="loader float-sm-center"></div>    
+                    </div>
+             
+                  </div>
+
+                </div>
               </div>
               <!-- /.card-body -->
             </div>

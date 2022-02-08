@@ -4,6 +4,7 @@
 //function for exam result tab data
 
 const load_history =()=>{
+    $('#spinner').css('display','block');
      $('#render_modal').load('../../forms/newhistory.php');
      var role = '<?=$role;?>';
      var dateFrom = document.getElementById('historyrequestDateFrom').value;
@@ -21,8 +22,12 @@ const load_history =()=>{
                     role:role
                     
                 },success:function(response){
-                    console.log(response);
+                    // console.log(response);
                     document.getElementById('history_data_qualif').innerHTML = response;
+                    $('#spinner').fadeOut(function(){
+                        
+                    });
+               
                
                 }
             });
