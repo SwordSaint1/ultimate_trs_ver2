@@ -59,7 +59,7 @@
                   <tr>
                    
                     <th>
-                      Qualificator Approval Status:
+                      Approval Status:
                     </th>
                      <th>
                       1 = Request 
@@ -98,7 +98,9 @@
                 <th> Employee No:</th>
                 <th> Full Name</th>
                 <th>Superior Approval/Cancelled Date</th>
-                <th>Qualificator Approval Status </th>
+                <th>Qualif Approval Date</th>
+                <th>Qualif Cancelled Date</th>
+                <th> Approval Status </th>
                 <th>Validation Remarks</th>
                  <th>Requested By </th>
                 <th>Training Start Date </th>

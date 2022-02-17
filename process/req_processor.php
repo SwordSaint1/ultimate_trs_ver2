@@ -50,7 +50,7 @@ $check = "SELECT id FROM trs_request WHERE employee_num = '$employee_num' AND ft
 	if ($stmt->rowCount() > 0) {
 
 		// echo 'Already have Training Request!';
-		echo 'Already Have Audit Request';
+		echo 'Already Have Training Request';
 	
 	}else{
 		$insert = "INSERT INTO trs_request (`employee_num`, `batch_no`, `full_name`,`position`,`department`,`section`,`emline`,`eprocess`,`training_reason`,`batch_number`,`approval_status`,`request_date_time`,`esection`,`ojt_period`,`ft_status`,`requested_by`) VALUES('$employee_num', '$batch_no','$full_name','$position','$department','$section','$emline','$eprocess','$training_reason','$batch_number', '1','$server_date_time', '$esection', '$ojt_period', '1','$full_names')";
@@ -306,14 +306,14 @@ if($method == 'prev_for_training'){
         $c = 0;
 
       $query = "
-      		SELECT trs_training_sched.start_date,trs_training_sched.end_date,trs_training_sched.shift,trs_training_sched.process,trs_training_sched.training_type,trs_for_training.employee_num,trs_request.full_name,
+      		SELECT trs_training_sched.start_date,trs_training_sched.end_date,trs_training_sched.shift,trs_training_sched.training_type,trs_for_training.employee_num,trs_request.full_name,
       			trs_for_training.confirmation,trs_for_training.training_code,trs_request.esection,trs_training_sched.start_time,TIME_FORMAT(trs_training_sched.start_time, '%H:%i:%s') as start_time,
-      			trs_training_sched.end_time,TIME_FORMAT(trs_training_sched.end_time, '%H:%i:%s') as end_time,trs_request.requested_by,trs_request.batch_no
+      			trs_training_sched.end_time,TIME_FORMAT(trs_training_sched.end_time, '%H:%i:%s') as end_time,trs_request.requested_by,trs_request.batch_no,trs_for_training.process
       		FROM trs_training_sched
       		LEFT JOIN trs_for_training ON trs_training_sched.training_code = trs_for_training.training_code
       		LEFT JOIN trs_request ON trs_request.employee_num = trs_for_training.employee_num
       		WHERE trs_for_training.confirmation = '4' AND trs_for_training.training_code = '$training_code' AND 
-      			trs_request.esection = '$esection'
+      			trs_request.esection = '$esection' AND trs_training_sched.process = '$process'
       		GROUP BY
       		trs_for_training.employee_num
       ";
@@ -1067,9 +1067,8 @@ trs_request.id = '$id'
 	    $sched_training_t = $_POST['value3'];
 	    $stime = $_POST['stime'];
 
-       $fetchReason = "SELECT DISTINCT start_date FROM trs_training_sched WHERE shift = '$sched_training_shift' AND sched_stat = 2 AND slot != 0 AND process = '$sched_training_process' AND training_type = '$sched_training_t' AND start_date >= '$server_date_only' AND start_time >= '$server_time' ";
+       $fetchReason = "SELECT DISTINCT start_date FROM trs_training_sched WHERE shift = '$sched_training_shift' AND sched_stat = 2 AND slot != 0 AND process = '$sched_training_process' AND training_type = '$sched_training_t' AND start_date >= '$server_date_only' ";
 
- 
         $stmt = $conn->prepare($fetchReason);
         $stmt->execute(); 
         if($stmt->rowCount() > 0){

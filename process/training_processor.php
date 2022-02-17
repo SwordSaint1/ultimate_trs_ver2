@@ -612,7 +612,7 @@ if($method == 'fetch_for_training2'){
     
    
  
-       $query = "SELECT id,training_type,training_code,process FROM trs_for_training WHERE training_code = '$training_code' AND confirmation = '4' GROUP BY training_type,process";
+       $query = "SELECT id,training_type,training_code,process FROM trs_for_training WHERE training_code = '$training_code' AND confirmation = '4'  GROUP BY training_type,process";
 
         $stmt = $conn->prepare($query);
         $stmt->execute();
@@ -644,12 +644,19 @@ if($method == 'fetch_for_training2'){
          $c = 0;
     
 
-    $query = "SELECT trs_training_sched.id,trs_training_sched.process,trs_training_sched.training_code,trs_training_sched.training_type,trs_training_sched.start_time,TIME_FORMAT(trs_training_sched.start_time, '%H:%i:%s') as start_time,trs_training_sched.end_time,TIME_FORMAT(trs_training_sched.end_time, '%H:%i:%s') as end_time,trs_training_sched.location,trs_for_training.id,trs_for_training.employee_num,trs_request.full_name,trs_for_training.ojt_period,trs_training_sched.start_date,trs_training_sched.end_date,trs_for_training.process,trs_request.requested_by,trs_request.batch_no
+    // $query = "SELECT trs_training_sched.id,trs_training_sched.process,trs_training_sched.training_code,trs_training_sched.training_type,trs_training_sched.start_time,TIME_FORMAT(trs_training_sched.start_time, '%H:%i:%s') as start_time,trs_training_sched.end_time,TIME_FORMAT(trs_training_sched.end_time, '%H:%i:%s') as end_time,trs_training_sched.location,trs_for_training.id,trs_for_training.employee_num,trs_request.full_name,trs_for_training.ojt_period,trs_training_sched.start_date,trs_training_sched.end_date,trs_for_training.process,trs_request.requested_by,trs_request.batch_no
+        
+    //     FROM trs_training_sched
+    //     LEFT JOIN trs_for_training ON trs_for_training.training_code = trs_training_sched.training_code
+    //     LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
+    //     WHERE trs_for_training.confirmation = '4' AND trs_for_training.training_code = '$training_code' AND trs_for_training.process = '$process' GROUP BY trs_for_training.employee_num";
+
+        $query = "SELECT trs_training_sched.id,trs_training_sched.process,trs_training_sched.training_code,trs_training_sched.training_type,trs_training_sched.start_time,TIME_FORMAT(trs_training_sched.start_time, '%H:%i:%s') as start_time,trs_training_sched.end_time,TIME_FORMAT(trs_training_sched.end_time, '%H:%i:%s') as end_time,trs_training_sched.location,trs_for_training.id,trs_for_training.employee_num,trs_request.full_name,trs_for_training.ojt_period,trs_training_sched.start_date,trs_training_sched.end_date,trs_for_training.process,trs_request.requested_by,trs_request.batch_no
         
         FROM trs_training_sched
         LEFT JOIN trs_for_training ON trs_for_training.training_code = trs_training_sched.training_code
         LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
-        WHERE trs_for_training.confirmation = '4' AND trs_for_training.training_code = '$training_code' AND trs_for_training.process = '$process' GROUP BY trs_for_training.employee_num";
+        WHERE trs_for_training.confirmation = '4' AND trs_training_sched.training_code = '$training_code' AND trs_for_training.process = '$process' AND trs_training_sched.training_type = '$training_type' GROUP BY trs_for_training.employee_num";
 
         $stmt = $conn->prepare($query);
         $stmt->execute();
