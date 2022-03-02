@@ -97,12 +97,14 @@
                 <th> Batch No:</th>  
                 <th> Employee No:</th>
                 <th> Full Name</th>
+                <th> Process </th>
                 <th>Superior Approval/Cancelled Date</th>
                 <th>Qualif Approval Date</th>
                 <th>Qualif Cancelled Date</th>
                 <th> Approval Status </th>
                 <th>Validation Remarks</th>
                  <th>Requested By </th>
+                 <th>Training Code:</th>
                 <th>Training Start Date </th>
                 <th>Training End Date </th>
                 <th>Trainer </th>

@@ -26,6 +26,7 @@
                       <thead style="text-align:center;">
                     <th>#</th>
                     <th>Training Code</th>
+                    <th>Request Code</th>
                     <th>Batch No.</th>
                     <th>Employee No.</th>
                     <th>Full Name</th>

@@ -55,12 +55,17 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 420px;">
+              <div class="card-body table-responsive p-0" style="height: 600px;">
                 <table class="table table-head-fixed text-nowrap table-hover">
                 <thead style="text-align:center;">
                       <th> # </th>
                       <th> Training Code</th>
                       <th>Training Type</th>
+                       <th>Process</th>
+                      <th>Training Start Date</th>
+                      <th>Training End Date</th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
                 </thead>
                 <tbody id="training_sched_data_list" style="text-align:center;"></tbody>
                 </table>

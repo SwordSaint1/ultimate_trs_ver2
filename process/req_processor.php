@@ -729,7 +729,7 @@ if ($method == 'fetch_for_exam_passed') {
 $query = "SELECT DISTINCT trs_for_training.id, trs_for_training.employee_num, trs_for_training.training_code,trs_for_training.ojt_end,trs_for_training.ojt_status,
 trs_for_training.eval_submit_date,trs_for_training.extend_days,trs_for_training.eval_remarks,trs_for_training.auth_date,Date_FORMAT(auth_date, '%m-%d-%Y %H:%i:%s') as auth_date,trs_for_training.exam_status,trs_for_training.examiner,
 trs_request.full_name,trs_request.eprocess,trs_request.training_type,
-trs_request.requested_by,trs_request.batch_no
+trs_request.requested_by,trs_request.batch_no,trs_request.batch_number
 
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
@@ -743,12 +743,9 @@ WHERE trs_for_training.training_code = '$training_code' AND trs_for_training.con
 
            
                 echo '<tr>';
-
-
-               
-
                 echo '<td>'.$c.'</td>';
                 echo '<td>'.$x['training_code'].'</td>';
+                 echo '<td>'.$x['batch_number'].'</td>';
                 echo '<td>'.$x['batch_no'].'</td>';
                 echo '<td>'.$x['employee_num'].'</td>';
                 echo '<td>'.$x['full_name'].'</td>';
@@ -756,11 +753,7 @@ WHERE trs_for_training.training_code = '$training_code' AND trs_for_training.con
                 echo '<td>'.$x['auth_date'].'</td>';
                 echo '<td>'.$x['exam_status'].'</td>';
                  echo '<td>'.$x['examiner'].'</td>';
-                
-               
-            
-                  
-                  
+                        
 
                 echo '</tr>';
             }
@@ -783,7 +776,7 @@ if ($method == 'fetch_for_exam_retain') {
 
 $query = "SELECT DISTINCT trs_for_training.attempt, trs_for_training.f_status,trs_for_training.id, trs_for_training.employee_num, trs_for_training.training_code,trs_for_training.ojt_end,trs_for_training.ojt_status,
 trs_for_training.eval_submit_date,trs_for_training.extend_days,trs_for_training.eval_remarks,trs_for_training.auth_date,Date_FORMAT(auth_date, '%m-%d-%Y %H:%i:%s') as auth_date,trs_for_training.exam_status,trs_for_training.examiner,
-trs_request.full_name,trs_request.eprocess,trs_request.training_type,trs_for_training.did_not_attend_exam,trs_request.requested_by,trs_request.batch_no
+trs_request.full_name,trs_request.eprocess,trs_request.training_type,trs_for_training.did_not_attend_exam,trs_request.requested_by,trs_request.batch_no,trs_request.batch_number
 
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
@@ -809,6 +802,7 @@ WHERE trs_for_training.training_code = '$training_code' AND trs_for_training.att
                     </td>';
                 echo '<td>'.$c.'</td>';
                 echo '<td>'.$x['training_code'].'</td>';
+                echo '<td>'.$x['batch_number'].'</td>';
                 echo '<td>'.$x['batch_no'].'</td>';
                 echo '<td>'.$x['employee_num'].'</td>';
                 echo '<td>'.$x['full_name'].'</td>';
@@ -845,7 +839,7 @@ if ($method == 'fetch_for_total_exam_failed') {
 $query = "SELECT DISTINCT trs_for_training.last_status,trs_for_training.f_status,trs_for_training.id, trs_for_training.employee_num, trs_for_training.training_code,trs_for_training.ojt_end,trs_for_training.ojt_status,
 trs_for_training.eval_submit_date,trs_for_training.extend_days,trs_for_training.eval_remarks,trs_for_training.auth_date,Date_FORMAT(auth_date, '%m-%d-%Y %H:%i:%s') as auth_date,trs_for_training.exam_status,trs_for_training.examiner,
 trs_request.full_name,trs_request.eprocess,trs_request.training_type,
-trs_for_training.attend_exam,trs_for_training.did_not_attend_exam,trs_request.requested_by,trs_request.batch_no
+trs_for_training.attend_exam,trs_for_training.did_not_attend_exam,trs_request.requested_by,trs_request.batch_no,trs_request.batch_number
 
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
@@ -859,11 +853,9 @@ WHERE trs_for_training.training_code = '$training_code' AND trs_for_training.con
 
            
                 echo '<tr>';
-
-
-              
                 echo '<td>'.$c.'</td>';
                 echo '<td>'.$x['training_code'].'</td>';
+                echo '<td>'.$x['batch_number'].'</td>';
                 echo '<td>'.$x['batch_no'].'</td>';
                 echo '<td>'.$x['employee_num'].'</td>';
                 echo '<td>'.$x['full_name'].'</td>';
@@ -1405,7 +1397,7 @@ if ($method == 'fetch_for_examss') {
 
 $query = "SELECT trs_for_training.id, trs_for_training.employee_num, trs_for_training.training_code,trs_for_training.ojt_end,trs_for_training.ojt_status,
 trs_for_training.eval_submit_date,trs_for_training.extend_days,trs_for_training.eval_remarks,trs_for_training.auth_date,Date_FORMAT(auth_date, '%Y-%m-%d %H:%i:%s') as auth_date,
-trs_request.full_name,trs_request.eprocess,trs_request.training_type,trs_for_training.examiner,trs_request.requested_by,trs_request.batch_no
+trs_request.full_name,trs_request.eprocess,trs_request.training_type,trs_for_training.examiner,trs_request.requested_by,trs_request.batch_no,trs_request.batch_number
 
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
@@ -1422,6 +1414,7 @@ AND trs_for_training.confirmation != '0' AND trs_for_training.confirmation != '6
                 echo '<tr>';
                 echo '<td>'.$c.'</td>';
                 echo '<td>'.$x['training_code'].'</td>';
+                 echo '<td>'.$x['batch_number'].'</td>';
                 echo '<td>'.$x['batch_no'].'</td>';
                 echo '<td>'.$x['employee_num'].'</td>';
                 echo '<td>'.$x['full_name'].'</td>';
@@ -1493,7 +1486,7 @@ $query = "SELECT trs_for_training.id, trs_for_training.employee_num, trs_for_tra
 trs_for_training.eval_submit_date,trs_for_training.extend_days,trs_for_training.eval_remarks,trs_for_training.auth_date,Date_FORMAT(auth_date, '%Y-%m-%d %H:%i:%s') as auth_date,trs_for_training.eval_status,
 trs_request.full_name,trs_request.eprocess,trs_request.training_type
 ,date_format(trs_for_training.ojt_end, '%m-%d-%Y') as ojt_end,
-trs_request.requested_by,trs_request.batch_no
+trs_request.requested_by,trs_request.batch_no,trs_request.batch_number
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
 WHERE  trs_for_training.confirmation != '6'
@@ -1513,6 +1506,7 @@ AND trs_for_training.eval_status = 'Pending Approval' GROUP BY trs_for_training.
 
                 echo '<td>'.$c.'</td>';
                 echo '<td>'.$x['training_code'].'</td>';
+                echo '<td>'.$x['batch_number'].'</td>';
                 echo '<td>'.$x['batch_no'].'</td>';
                 echo '<td>'.$x['employee_num'].'</td>';
                 echo '<td>'.$x['full_name'].'</td>';
@@ -1583,7 +1577,7 @@ $query = "SELECT trs_for_training.id, trs_for_training.employee_num, trs_for_tra
 trs_for_training.eval_submit_date,trs_for_training.extend_days,trs_for_training.eval_remarks,trs_for_training.auth_date,Date_FORMAT(auth_date, '%Y-%m-%d %H:%i:%s') as auth_date,trs_for_training.eval_status,
 trs_request.full_name,trs_request.eprocess,trs_request.training_type
 ,date_format(trs_for_training.ojt_end, '%m-%d-%Y') as ojt_end,
-trs_request.requested_by,trs_request.batch_no
+trs_request.requested_by,trs_request.batch_no,trs_request.batch_number
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
 WHERE  trs_for_training.confirmation = '0'
@@ -1603,6 +1597,7 @@ AND trs_for_training.eval_status = 'Cancel' GROUP BY trs_for_training.employee_n
 
                 echo '<td>'.$c.'</td>';
                 echo '<td>'.$x['training_code'].'</td>';
+                echo '<td>'.$x['batch_number'].'</td>';
                 echo '<td>'.$x['batch_no'].'</td>';
                 echo '<td>'.$x['employee_num'].'</td>';
                 echo '<td>'.$x['full_name'].'</td>';
@@ -1868,7 +1863,7 @@ trs_for_training.ojt_start,trs_for_training.ojt_end,
 trs_request.full_name,trs_request.training_type
 ,date_format(trs_for_training.ojt_start, '%m-%d-%Y') as ojt_start
 	,date_format(trs_for_training.ojt_end, '%m-%d-%Y') as ojt_end,
-	trs_request.requested_by,trs_request.batch_no
+	trs_request.requested_by,trs_request.batch_no,trs_request.batch_number
 
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
@@ -1898,6 +1893,7 @@ GROUP BY trs_for_training.employee_num
                     </td>';
 				echo '<td>'.$c.'</td>';
 				echo '<td>'.$x['training_code'].'</td>';
+				echo '<td>'.$x['batch_number'].'</td>';
 				echo '<td>'.$x['batch_no'].'</td>';
 				echo '<td>'.$x['employee_num'].'</td>';
 				echo '<td>'.$x['full_name'].'</td>';
@@ -1940,7 +1936,7 @@ trs_for_training.ojt_start,trs_for_training.ojt_end,
 trs_request.full_name,trs_request.training_type,trs_for_training.eval_submit
 ,date_format(trs_for_training.ojt_start, '%m-%d-%Y') as ojt_start
 	,date_format(trs_for_training.ojt_end, '%m-%d-%Y') as ojt_end,
-	trs_request.requested_by,trs_for_training.eval_remarks,trs_for_training.extend_days,trs_request.batch_no
+	trs_request.requested_by,trs_for_training.eval_remarks,trs_for_training.extend_days,trs_request.batch_no,trs_request.batch_number
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
 WHERE trs_for_training.confirmation = 5 AND trs_for_training.eval_submit = '' AND trs_for_training.training_code = '$training_code'  GROUP BY trs_for_training.employee_num
@@ -1960,6 +1956,7 @@ WHERE trs_for_training.confirmation = 5 AND trs_for_training.eval_submit = '' AN
 				
 				echo '<td>'.$c.'</td>';
 				echo '<td>'.$x['training_code'].'</td>';
+				echo '<td>'.$x['batch_number'].'</td>';
 				echo '<td>'.$x['batch_no'].'</td>';
 				echo '<td>'.$x['employee_num'].'</td>';
 				echo '<td>'.$x['full_name'].'</td>';
@@ -1999,7 +1996,7 @@ trs_for_training.ojt_start,trs_for_training.ojt_end,
 trs_request.full_name,trs_request.training_type,trs_for_training.auth_date,Date_FORMAT(trs_for_training.auth_date, '%Y-%m-%d %H:%i:%s') as auth_date
 ,date_format(trs_for_training.ojt_start, '%m-%d-%Y') as ojt_start
 	,date_format(trs_for_training.ojt_end, '%m-%d-%Y') as ojt_end,
-	trs_request.requested_by,trs_request.batch_no
+	trs_request.requested_by,trs_request.batch_no,trs_request.batch_number
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
 WHERE trs_for_training.confirmation = 5 AND trs_for_training.training_code = '$training_code' AND trs_for_training.ojt_status = 'Done' OR trs_for_training.eval_status LIKE 'OJT Extension%' GROUP BY trs_for_training.employee_num
@@ -2023,6 +2020,7 @@ WHERE trs_for_training.confirmation = 5 AND trs_for_training.training_code = '$t
                     </td>';
 				echo '<td>'.$c.'</td>';
 				echo '<td>'.$x['training_code'].'</td>';
+				echo '<td>'.$x['batch_number'].'</td>';
 				echo '<td>'.$x['batch_no'].'</td>';
 				echo '<td>'.$x['employee_num'].'</td>';
 				echo '<td>'.$x['full_name'].'</td>';

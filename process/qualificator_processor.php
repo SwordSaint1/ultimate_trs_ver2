@@ -2083,7 +2083,7 @@ GROUP BY trs_for_training.employee_num";
     $query = " SELECT trs_request.cancel_date,trs_request.id,trs_request.employee_num,trs_request.full_name,trs_request.approval_date,trs_request.approval_status,trs_request.request_date_time,
 trs_training_sched.start_date,trs_training_sched.end_date,trs_training_sched.trainer,
 trs_for_training.training_status,trs_for_training.ojt_start,trs_for_training.ojt_end,trs_for_training.auth_date,Date_FORMAT(trs_for_training.auth_date, '%Y-%m-%d %H:%i:%s') as auth_date ,
-trs_for_training.examiner,trs_for_training.exam_status,trs_for_training.last_status,trs_request.requested_by,trs_request.batch_no,trs_for_training.eval_remarks,trs_request.batch_number,trs_request.qualifcancel_date,trs_request.qualifapproval_date
+trs_for_training.examiner,trs_for_training.exam_status,trs_for_training.last_status,trs_request.requested_by,trs_request.batch_no,trs_for_training.eval_remarks,trs_request.batch_number,trs_request.qualifcancel_date,trs_request.qualifapproval_date,trs_request.eprocess,trs_request.training_code
 
 FROM trs_request
 LEFT JOIN trs_for_training ON trs_for_training.employee_num = trs_request.employee_num
@@ -2106,12 +2106,14 @@ WHERE (trs_request.request_date_time >='$dateFrom 00:00:00' AND trs_request.requ
                  echo '<td>'.$x['batch_no'].'</td>';
                 echo '<td>'.$x['employee_num'].'</td>';
                 echo '<td>'.$x['full_name'].'</td>';
+                echo '<td>'.$x['eprocess'].'</td>';
                 echo '<td>'.$x['approval_date'].$x['cancel_date'].'</td>';
                 echo '<td>'.$x['qualifapproval_date'].'</td>';
                 echo '<td>'.$x['qualifcancel_date'].'</td>';
                 echo '<td>'.$x['approval_status'].'</td>';
                 echo '<td>'.$x['eval_remarks'].'</td>';
                 echo '<td>'.$x['requested_by'].'</td>';
+                echo '<td>'.$x['training_code'].'</td>';
                 echo '<td>'.$x['start_date'].'</td>';
                  echo '<td>'.$x['end_date'].'</td>';
                   echo '<td>'.$x['trainer'].'</td>';

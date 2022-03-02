@@ -13,7 +13,7 @@ const load_for_training_list =()=>{
                 type: 'POST',
                 cache: false,
                 data:{
-                    method: 'fetch_for_training_data_list',
+                    method: 'fetch_data_try',
                     role:role,
                     dateFrom:dateFrom,
                     dateTo:dateTo
@@ -194,5 +194,5 @@ const load_training_statuss =()=>{
             
             }
         });
-    }
+}
 </script>

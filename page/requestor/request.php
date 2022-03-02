@@ -43,6 +43,13 @@
                 </div>
               </form>
             </div>
+       
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
             <!-- /.card -->
 <?php  include 'plugins/javascript/script.php';?>
 <?php include 'plugins/footer.php'; ?>

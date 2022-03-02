@@ -47,6 +47,13 @@
                 </div>
               </form>
             </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
             <!-- /.card -->
 
 <?php  include 'plugins/javascript/create_script.php';?>

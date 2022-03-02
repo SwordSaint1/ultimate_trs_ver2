@@ -494,6 +494,43 @@ if($method == 'fetch_for_training2'){
 
 
 
+if ($method == 'fetch_data_try') {
+        $role = $_POST['role'];
+        $dateTo = $_POST['dateTo'];
+        $dateFrom = $_POST['dateFrom'];
+    
+        $c = 0;
+    $query = "SELECT id, training_type, training_code,date_format(training_start_date, '%m-%d-%Y') AS training_start_date,date_format(training_end_date, '%m-%d-%Y') AS training_end_date,process,TIME_FORMAT(start_time, '%H:%i:%s') AS start_time,TIME_FORMAT(end_time, '%H:%i:%s') AS end_time FROM trs_for_training WHERE confirmation = 4 AND (training_start_date >='$dateFrom' AND training_end_date <= '$dateTo') GROUP BY training_code,training_type,process";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        foreach($stmt->fetchALL() as $x){
+            
+
+        $c++;
+
+            if ($role == 'training') {
+                echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#training_filter_process" onclick="get_filter_process(&quot;'.$x['id'].'~!~'.$x['training_code'].'~!~'.$x['training_type'].'~!~'.$x['process'].'&quot;)">';
+                echo '<td>'.$c.'</td>';
+                echo '<td>'.$x['training_code'].'</td>';
+                echo '<td>'.$x['training_type'].'</td>';
+                echo '<td>'.$x['process'].'</td>';
+                echo '<td>'.$x['training_start_date'].'</td>';
+                echo '<td>'.$x['training_end_date'].'</td>'; 
+                echo '<td>'.$x['start_time'].'</td>';    
+                echo '<td>'.$x['end_time'].'</td>'; 
+                echo '</tr>';
+            }
+    }
+}else{
+        echo '<tr>';
+            echo '<td colspan="4" style="text-align:center;">NO RESULT</td>';
+            echo '</tr>';
+            }
+    }
+
+
+
 
         if ($method == 'fetch_attendance_data_list') {
         $role = $_POST['role'];
