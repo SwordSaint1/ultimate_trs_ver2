@@ -1,10 +1,10 @@
 <script type="text/javascript">
-	  $(document).ready(function(){
+      $(document).ready(function(){
       
-	  		load_for_sched();
+            load_for_sched();
       
     });
-	// SELECT SCHEDULE TAB
+    // SELECT SCHEDULE TAB
 const load_for_sched =()=>{
      var role = '<?=$role;?>';
      var esection = '<?=$esection;?>';
@@ -189,126 +189,13 @@ const load_start_date =()=>{
                 training_typee:training_typee
             },success:function(data){
                 $('#sched_training_start').html(data);
-             setTimeout(load_slot,100);
-             setTimeout(load_end_time,100);
-             setTimeout(load_training_code,100);
-             setTimeout(load_trainer,100);
+                 setTimeout(load_location,100);
          
             }
         });
     }
     
-    const load_training_code =()=>{
-      
-         var processs = $('#sched_training_process').val();
-         var typee = $('#sched_training_t').val();
-         var start = $('#sched_training_startdate_schedule').val();
-         var endd = $('#sched_training_enddate_schedule').val();
-         var start_t = $('#sched_training_start').val();
-
-        $.ajax({
-            url: '../../process/req_processor.php',
-            type: 'POST',
-            cache: false,
-            data:{
-                method: 'gettrainingcode',
-                processs:processs,
-                typee:typee,
-                start:start,
-                endd:endd,
-                start_t:start_t
-            },success:function(data){
-                $('#training_code_for_training').html(data);
-                  setTimeout(load_location,100);
-            }
-        });
-    }
-
-     const load_trainer =()=>{
-      
-         var processs = $('#sched_training_process').val();
-         var typee = $('#sched_training_t').val();
-         var start = $('#sched_training_startdate_schedule').val();
-         var endd = $('#sched_training_enddate_schedule').val();
-         var start_t = $('#sched_training_start').val();
-
-        $.ajax({
-            url: '../../process/req_processor.php',
-            type: 'POST',
-            cache: false,
-            data:{
-                method: 'gettrainer',
-                processs:processs,
-                typee:typee,
-                start:start,
-                endd:endd,
-                start_t:start_t
-            },success:function(data){
-                $('#trainer_for').html(data);
-              
-            }
-        });
-    }
-
-
-     const load_slot =()=>{
-      
-         var processs = $('#sched_training_process').val();
-         var typee = $('#sched_training_t').val();
-         var start = $('#sched_training_startdate_schedule').val();
-         var endd = $('#sched_training_enddate_schedule').val();
-         var start_t = $('#sched_training_start').val();
-
-        $.ajax({
-            url: '../../process/req_processor.php',
-            type: 'POST',
-            cache: false,
-            data:{
-                method: 'getslot',
-                processs:processs,
-                typee:typee,
-                start:start,
-                endd:endd,
-                start_t:start_t
-            },success:function(data){
-                $('#slot_for').html(data);
-              
-            }
-        });
-    }
-
-
-    const load_end_time =()=>{
-        var training_typee = $('#sched_training_t').val();
-        var process = $('#sched_training_process').val();
-        var shift = $('#sched_training_shift').val();
-        var start_d = $('#sched_training_startdate_schedule').val();
-        var end_d = $('#sched_training_enddate_schedule').val();
-        var start_t = $('#sched_training_start').val();
-
-        $.ajax({
-            url: '../../process/req_processor.php',
-            type: 'POST',
-            cache: false,
-            data:{
-                method: 'getSchedConfirmend_time',
-                training_typee:training_typee,
-                process:process,
-                shift:shift,
-                start_d:start_d,
-                end_d:end_d,
-                start_t:start_t
-               
-            },success:function(data){
-                $('#sched_training_end').html(data);
-             
-            }
-        });
-    }
-
-
-
-    const load_location =()=>{
+     const load_location =()=>{
          var training_codee = $('#training_code_for_training').val();
          var processs = $('#sched_training_process').val();
          var typee = $('#sched_training_t').val();
@@ -330,12 +217,138 @@ const load_start_date =()=>{
             },success:function(data){
                 console.log(data);
                 $('#sched_training_location').html(data);
-
-               
-             
+                    
+                     setTimeout(load_training_code,100);
+                   
+                
             }
         });
     }
+    const load_training_code =()=>{
+      
+         var processs = $('#sched_training_process').val();
+         var typee = $('#sched_training_t').val();
+         var start = $('#sched_training_startdate_schedule').val();
+         var endd = $('#sched_training_enddate_schedule').val();
+         var start_t = $('#sched_training_start').val();
+         var loc = $('#sched_training_location').val();
+        $.ajax({
+            url: '../../process/req_processor.php',
+            type: 'POST',
+            cache: false,
+            data:{
+                method: 'gettrainingcode',
+                processs:processs,
+                typee:typee,
+                start:start,
+                endd:endd,
+                start_t:start_t,
+                loc:loc
+            },success:function(data){
+                $('#training_code_for_training').html(data);
+             setTimeout(load_trainer,100);
+              setTimeout(load_end_time,100);
+            }
+        });
+    }
+
+     const load_trainer =()=>{
+      
+         var processs = $('#sched_training_process').val();
+         var typee = $('#sched_training_t').val();
+         var start = $('#sched_training_startdate_schedule').val();
+         var endd = $('#sched_training_enddate_schedule').val();
+         var start_t = $('#sched_training_start').val();
+         var tcode = $('#training_code_for_training').val();
+
+        $.ajax({
+            url: '../../process/req_processor.php',
+            type: 'POST',
+            cache: false,
+            data:{
+                method: 'gettrainer',
+                processs:processs,
+                typee:typee,
+                start:start,
+                endd:endd,
+                start_t:start_t,
+                tcode:tcode
+            },success:function(data){
+                $('#trainer_for').html(data);
+                
+            }
+        });
+    }
+
+
+     const load_slot =()=>{
+      
+         var processs = $('#sched_training_process').val();
+         var typee = $('#sched_training_t').val();
+         var start = $('#sched_training_startdate_schedule').val();
+         var endd = $('#sched_training_enddate_schedule').val();
+         var start_t = $('#sched_training_start').val();
+         var end_t = $('#sched_training_end').val();
+         var loc = $('#sched_training_location').val();
+         var tcode = $('#training_code_for_training').val();
+
+
+        $.ajax({
+            url: '../../process/req_processor.php',
+            type: 'POST',
+            cache: false,
+            data:{
+                method: 'getslot',
+                processs:processs,
+                typee:typee,
+                start:start,
+                endd:endd,
+                start_t:start_t,
+                end_t:end_t,
+                loc:loc,
+                tcode:tcode
+            },success:function(data){
+                $('#slot_for').html(data);
+              
+            }
+        });
+    }
+
+
+    const load_end_time =()=>{
+        var training_typee = $('#sched_training_t').val();
+        var process = $('#sched_training_process').val();
+        var shift = $('#sched_training_shift').val();
+        var start_d = $('#sched_training_startdate_schedule').val();
+        var end_d = $('#sched_training_enddate_schedule').val();
+        var start_t = $('#sched_training_start').val();
+        var t_code = $('#training_code_for_training').val();
+        var loc = $('#sched_training_location').val();
+        $.ajax({
+            url: '../../process/req_processor.php',
+            type: 'POST',
+            cache: false,
+            data:{
+                method: 'getSchedConfirmend_time',
+                training_typee:training_typee,
+                process:process,
+                shift:shift,
+                start_d:start_d,
+                end_d:end_d,
+                start_t:start_t,
+                t_code:t_code,
+                loc:loc
+               
+            },success:function(data){
+                $('#sched_training_end').html(data);
+                 setTimeout(load_slot,100);
+            }
+        });
+    }
+
+
+
+   
 
   
   // select sched confirm function

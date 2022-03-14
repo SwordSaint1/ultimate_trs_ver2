@@ -2034,18 +2034,13 @@ GROUP BY trs_for_training.employee_num";
         $process = $_POST['process'];
     
         $c = 0;
-    // $query = "SELECT id,training_code,training_type,process,ojt_end FROM trs_for_training WHERE confirmation = '5' AND ojt_status ='' OR eval_status = 'OJT Extension' GROUP BY training_code";
+   
 
-        $query = " SELECT * FROM trs_for_training WHERE confirmation = '5' AND ojt_status ='' OR ojt_status = 'For OJT Extension' OR eval_status = 'OJT Extension' GROUP BY training_code,process
+        $query = " SELECT * FROM trs_for_training WHERE confirmation = '5' AND process LIKE '$process%' AND ojt_status ='' OR ojt_status = 'For OJT Extension' OR eval_status = 'OJT Extension' GROUP BY training_code,process
         ";
     $stmt = $conn->prepare($query);
-    if ($stmt->execute()) {
-        $a ="SELECT * FROM trs_for_training WHERE process LIKE '$process%'";
-        $stmt2 = $conn->prepare($a);
-
-    
-        $stmt2->execute();
-    if ($stmt2->rowCount() > 0) {
+        $stmt->execute();
+    if ($stmt->rowCount() > 0) {
         foreach($stmt->fetchALL() as $x){
             
 
@@ -2070,7 +2065,7 @@ GROUP BY trs_for_training.employee_num";
 
 
 
-}
+
 
 
    if ($method == 'fetch_history_list') {

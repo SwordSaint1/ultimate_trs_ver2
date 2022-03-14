@@ -541,7 +541,7 @@ if ($method == 'fetch_data_try') {
         // confirmation = '5' OR confirmation = '0' OR confirmation = '6' 
     $query = "SELECT id,training_code,training_type,process FROM trs_for_training WHERE
     (training_start_date >='$dateFrom' AND training_end_date <= '$dateTo') AND confirmation != 4
-    GROUP BY training_code, training_type";
+    GROUP BY training_code, training_type,process";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
@@ -551,7 +551,7 @@ if ($method == 'fetch_data_try') {
         $c++;
 
             if ($role == 'training') {
-                echo '<tr style="cursor:pointer;" class="modal-trigger" data-target="#attendance_view" data-toggle="modal" onclick="get_attendance_view(&quot;'.$x['id'].'~!~'.$x['training_code'].'~!~'.$x['training_type'].'&quot;)">';
+                echo '<tr style="cursor:pointer;" class="modal-trigger" data-target="#attendance_view" data-toggle="modal" onclick="get_attendance_view(&quot;'.$x['id'].'~!~'.$x['training_code'].'~!~'.$x['training_type'].'~!~'.$x['process'].'&quot;)">';
                 echo '<td>'.$c.'</td>';
                 echo '<td>'.$x['training_code'].'</td>';
                 echo '<td>'.$x['training_type'].'</td>';
@@ -955,16 +955,17 @@ if($method == 'view_attendance'){
         $id = trim($_POST['id']); 
         $training_code = trim($_POST['training_code']);
         $training_type = trim($_POST['training_type']);
+        $process =$_POST['process'];
          $c = 0;
 
 
 $query ="SELECT DISTINCT trs_for_training.id,trs_for_training.training_code,trs_for_training.employee_num,trs_for_training.training_type,trs_for_training.process,
-trs_for_training.ojt_start,trs_for_training.ojt_end, trs_for_training.training_start_date,trs_for_training.training_end_date,trs_for_training.attend,
+trs_for_training.ojt_start,trs_for_training.ojt_end, trs_training_sched.start_date,trs_training_sched.end_date,trs_for_training.attend,
 trs_for_training.did_not_attend,trs_for_training.training_status,
 trs_request.position,trs_request.department,
 trs_request.full_name,trs_training_sched.trainer
-,date_format(trs_for_training.training_start_date, '%m-%d-%Y') as training_start_date
-	,date_format(trs_for_training.training_end_date, '%m-%d-%Y') as training_end_date,
+,date_format(trs_training_sched.start_date, '%m-%d-%Y') as training_start_date
+	,date_format(trs_training_sched.end_date, '%m-%d-%Y') as training_end_date,
     trs_request.requested_by,trs_request.batch_no
 
 
@@ -973,7 +974,7 @@ LEFT JOIN trs_request ON trs_request.employee_num = trs_for_training.employee_nu
 LEFT JOIN trs_training_sched ON trs_for_training.training_code = trs_training_sched.training_code
 WHERE 
 trs_for_training.training_code = '$training_code' AND confirmation != '4'
-AND trs_for_training.training_type = '$training_type'
+AND trs_for_training.training_type = '$training_type' AND trs_for_training.process = '$process'
 
 
 ";

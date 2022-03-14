@@ -27,6 +27,7 @@ const for_training =()=>{
 
 const get_view_for_training =(param)=>{
     var data = param.split('~!~');
+    console.log(param);
     var id = data[0];
     var training_code = data[1];
     var training_type = data[2];

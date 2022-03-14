@@ -5,7 +5,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          <h4>View For Selection of Schedules</h4>
+          <h4>View Attendance</h4>
           
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="javascript:window.location.reload()">
@@ -19,6 +19,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                     <span>Training Code:</span>     <input type="text" name="training_code_attendance" id="training_code_attendance" class="form-control-lg" readonly="">
+                    <input type="hidden" name="training_code_process" id="training_code_process">
                  </h3>
 
               </div>

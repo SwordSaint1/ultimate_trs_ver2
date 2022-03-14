@@ -10,7 +10,7 @@ const load_attendance_report_list =()=>{
      var role = '<?=$role;?>';
      var dateFrom = document.getElementById('attendancerequestDateFrom').value;
      var dateTo = document.getElementById('attendancerequestDateTo').value;
-
+    
            $.ajax({
                 url: '../../process/training_processor.php',
                 type: 'POST',
@@ -34,9 +34,11 @@ const get_attendance_view =(param)=>{
     var id = data[0];
     var training_code = data[1];
     var training_type = data[2];
+    var process = data[3];
 
   $('#training_code_attendance').val(training_code);
    $('#attendance_training_type').val(training_type);
+   $('#training_code_process').val(process);
 
   $.ajax({
     url:'../../process/training_processor.php',
@@ -46,7 +48,8 @@ const get_attendance_view =(param)=>{
         method: 'view_attendance',
         id:id,
         training_code:training_code,
-        training_type:training_type
+        training_type:training_type,
+        process:process
 
     },success:function(response){
         $('#data_attendance_view').html(response);

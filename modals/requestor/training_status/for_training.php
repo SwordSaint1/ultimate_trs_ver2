@@ -16,7 +16,7 @@
                 <h3 class="card-title"> <span>Training Code:</span>     <input type="text" name="for_training_training_code" id="for_training_training_code" class="form-control-lg" readonly="">
                 <input type="hidden" name=""     id="id_for_training">
                  <input type="hidden" name=""     id="training_type_for_training">
-                 <input type="hidden" name=""     id="process_for_training">
+                 <input type="hidden" name=""    id="process_for_training">
                
               </h3>
  

@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-3">
                     <span>Training Code:</span>
-                       <select id="training_code_for_training" class="form-control"  disabled="" onchange="load_location()">
+                       <select id="training_code_for_training" class="form-control"  disabled="">
                     </select>
                     
                 </div>
@@ -92,24 +92,27 @@
                 </div>
                  <div class="col-3">
                      <span>Start Time:</span>
-                    <select id="sched_training_start" class="form-control" onchange="load_slot(), load_end_time(),load_training_code(),load_trainer()">
+                    <select id="sched_training_start" class="form-control" onchange="load_location()">
                     </select>
                    
                 </div>
                  <div class="col-3">
+                     <span>Location:</span>
+                       <select class="form-control" id="sched_training_location" onchange="load_training_code()">
+                       </select>
+                </div>
+             
+      </div>
+      <div class="row">
+             
+
+                    <div class="col-3">
                      <span>Trainer:</span>
                        <select class="form-control" id="trainer_for" disabled="">
                           <option value=""></option>
                        </select>
                 </div>
                 
-      </div>
-      <div class="row">
-              <div class="col-3">
-                     <span>Location:</span>
-                       <select class="form-control" id="sched_training_location" disabled="">
-                       </select>
-                </div>
                  <div class="col-3">
                      <span>End Date:</span>
                        <select id="sched_training_enddate_schedule" class="form-control"  disabled="">

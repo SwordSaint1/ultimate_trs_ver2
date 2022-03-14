@@ -273,7 +273,9 @@ if ($method == 'for_training_data') {
 			FROM trs_request
 			LEFT JOIN trs_for_training ON trs_request.training_code = trs_for_training.training_code
 			WHERE trs_for_training.confirmation = '4'
-			AND (training_start_date >='$dateFrom' AND training_end_date <= '$dateTo') GROUP BY trs_for_training.training_code	";
+			AND (training_start_date >='$dateFrom' AND training_end_date <= '$dateTo') 
+			AND trs_request.esection = '$esection'
+			GROUP BY trs_for_training.training_code,trs_for_training.process";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -985,8 +987,8 @@ trs_request.id = '$id'
       		$sched_training_t = $_POST['typee'];
       		$sched_training_enddate_schedule = $_POST['endd'];
       		$sched_training_start = $_POST['start_t'];
-   
-       $fetchReason = "SELECT DISTINCT training_code FROM trs_training_sched WHERE sched_stat = 2 AND start_date = '$sched_training_startdate_schedule' AND process = '$sched_training_process' AND training_type = '$sched_training_t' AND end_date = '$sched_training_enddate_schedule' AND start_time = '$sched_training_start' AND slot != 0";
+   			$loc = $_POST['loc'];
+       $fetchReason = "SELECT DISTINCT training_code FROM trs_training_sched WHERE sched_stat = 2 AND start_date = '$sched_training_startdate_schedule' AND process = '$sched_training_process' AND training_type = '$sched_training_t' AND end_date = '$sched_training_enddate_schedule' AND start_time = '$sched_training_start' AND slot != 0 AND location = '$loc'";
         $stmt = $conn->prepare($fetchReason);
         $stmt->execute();
         if($stmt->rowCount() > 0){
@@ -1002,8 +1004,9 @@ trs_request.id = '$id'
       		$sched_training_t = $_POST['typee'];
       		$sched_training_enddate_schedule = $_POST['endd'];
       		$sched_training_start = $_POST['start_t'];
+      		$tcode = $_POST['tcode'];
    
-       $fetchReason = "SELECT DISTINCT trainer FROM trs_training_sched WHERE sched_stat = 2 AND start_date = '$sched_training_startdate_schedule' AND process = '$sched_training_process' AND training_type = '$sched_training_t' AND end_date = '$sched_training_enddate_schedule' AND start_time = '$sched_training_start' AND slot != 0";
+       $fetchReason = "SELECT DISTINCT trainer FROM trs_training_sched WHERE sched_stat = 2 AND start_date = '$sched_training_startdate_schedule' AND process = '$sched_training_process' AND training_type = '$sched_training_t' AND end_date = '$sched_training_enddate_schedule' AND start_time = '$sched_training_start' AND slot != 0 AND training_code = '$tcode'";
         $stmt = $conn->prepare($fetchReason);
         $stmt->execute();
         if($stmt->rowCount() > 0){
@@ -1019,9 +1022,12 @@ trs_request.id = '$id'
       		$sched_training_t = $_POST['typee'];
       		$sched_training_enddate_schedule = $_POST['endd'];
       		$sched_training_start = $_POST['start_t'];
+      		$end_t = $_POST['end_t'];
+      		$loc = $_POST['loc'];
+      		$tcode = $_POST['tcode'];
    
-       $fetchReason = "SELECT DISTINCT slot,start_time,TIME_FORMAT(start_time, '%H:%i:%s') as start_time  FROM trs_training_sched WHERE start_date = '$sched_training_startdate_schedule' AND sched_stat = 2 AND process LIKE '$sched_training_process%' AND training_type = '$sched_training_t' AND start_time LIKE'$sched_training_start%'
-       AND start_time = '$sched_training_start' AND slot !=0";
+       $fetchReason = "SELECT DISTINCT slot,start_time,TIME_FORMAT(start_time, '%H:%i:%s') as start_time, end_time,TIME_FORMAT(end_time, '%H:%i:%s') as end_time  FROM trs_training_sched WHERE start_date = '$sched_training_startdate_schedule' AND sched_stat = 2 AND process LIKE '$sched_training_process%' AND training_type = '$sched_training_t' AND start_time LIKE'$sched_training_start%'
+       AND end_time LIKE '$end_t%' AND location LIKE '$loc%' AND training_code LIKE '$tcode%' AND slot !=0 ";
         $stmt = $conn->prepare($fetchReason);
         $stmt->execute();
         if($stmt->rowCount() > 0){
@@ -1039,10 +1045,9 @@ trs_request.id = '$id'
       		$sched_training_t = $_POST['typee'];
       		$sched_training_enddate_schedule = $_POST['endd'];
       		$sched_training_start = $_POST['start_t'];
-      		$training_code_for_training = $_POST['training_codee'];
+      		
    
-       $fetchReason = "SELECT DISTINCT location FROM trs_training_sched WHERE
-       training_code = '$training_code_for_training' AND start_date = '$sched_training_startdate_schedule' AND process = '$sched_training_process' AND training_type = '$sched_training_t' AND end_date = '$sched_training_enddate_schedule' AND start_time = '$sched_training_start' AND slot != 0";
+       $fetchReason = "SELECT location FROM trs_training_sched WHERE start_date = '$sched_training_startdate_schedule' AND process = '$sched_training_process' AND training_type = '$sched_training_t' AND end_date = '$sched_training_enddate_schedule' AND start_time = '$sched_training_start' AND slot != 0 ";
         $stmt = $conn->prepare($fetchReason);
         $stmt->execute();
         if($stmt->rowCount() > 0){
@@ -1059,7 +1064,7 @@ trs_request.id = '$id'
 	    $sched_training_t = $_POST['value3'];
 	    $stime = $_POST['stime'];
 
-       $fetchReason = "SELECT DISTINCT start_date FROM trs_training_sched WHERE shift = '$sched_training_shift' AND sched_stat = 2 AND slot != 0 AND process = '$sched_training_process' AND training_type = '$sched_training_t' AND start_date >= '$server_date_only' ";
+       $fetchReason = "SELECT DISTINCT start_date FROM trs_training_sched WHERE shift = '$sched_training_shift' AND sched_stat = 2 AND slot != 0 AND process = '$sched_training_process' AND training_type = '$sched_training_t' AND start_date >= '$server_date_only'";
 
         $stmt = $conn->prepare($fetchReason);
         $stmt->execute(); 
@@ -1119,10 +1124,12 @@ trs_request.id = '$id'
 		$sched_training_startdate_schedule = $_POST['start_d'];
 		$sched_training_enddate_schedule = $_POST['end_d'];
 		$sched_training_start = $_POST['start_t'];
+		$t_code = $_POST['t_code'];
+	
 
        $fetchReason = "SELECT DISTINCT end_time,TIME_FORMAT(end_time, '%H:%i:%s') as end_time FROM trs_training_sched WHERE
        training_type = '$sched_training_t' AND process = '$sched_training_process' AND shift = '$sched_training_shift' AND
-       start_date = '$sched_training_startdate_schedule' AND end_date = '$sched_training_enddate_schedule' AND start_time= '$sched_training_start' AND sched_stat = 2 AND slot != 0";
+       start_date = '$sched_training_startdate_schedule' AND end_date = '$sched_training_enddate_schedule' AND start_time= '$sched_training_start' AND sched_stat = 2 AND slot != 0 AND training_code = '$t_code'";
         $stmt = $conn->prepare($fetchReason);
         $stmt->execute();
         if($stmt->rowCount() > 0){
