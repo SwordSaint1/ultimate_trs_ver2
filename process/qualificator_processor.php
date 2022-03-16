@@ -2072,8 +2072,9 @@ GROUP BY trs_for_training.employee_num";
         $role = $_POST['role'];
         $dateTo = $_POST['dateTo'];
         $dateFrom = $_POST['dateFrom'];
-    
         $c = 0;
+
+        
 
     $query = " SELECT trs_request.cancel_date,trs_request.id,trs_request.employee_num,trs_request.full_name,trs_request.approval_date,trs_request.approval_status,trs_request.request_date_time,
 trs_training_sched.start_date,trs_training_sched.end_date,trs_training_sched.trainer,
@@ -2170,12 +2171,8 @@ $dateFrom = $_POST['dateFrom'];
 if ($method == 'fetch_for_cancel_val_qualif') {
         $role = $_POST['role'];
         $training_code = $_POST['training_code'];
-        
         $c = 0;
-    // $query = "SELECT * FROM e_r_for_training WHERE confirmation = 5  GROUP BY training_code ";
-
-
-
+    
 $query = "SELECT trs_for_training.id, trs_for_training.employee_num, trs_for_training.training_code,trs_for_training.ojt_end,trs_for_training.ojt_status,
 trs_for_training.eval_submit_date,trs_for_training.extend_days,trs_for_training.eval_remarks,trs_for_training.auth_date,Date_FORMAT(auth_date, '%Y-%m-%d %H:%i:%s') as auth_date,trs_for_training.eval_status,
 trs_request.full_name,trs_request.eprocess,trs_request.training_type
@@ -2183,7 +2180,7 @@ trs_request.full_name,trs_request.eprocess,trs_request.training_type
 trs_request.requested_by,trs_request.batch_no
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
-WHERE  trs_for_training.confirmation = '0'
+WHERE  trs_for_training.confirmation = '0' AND trs_for_training.training_code = '$training_code' AND trs_request.training_code = '$training_code'
 AND trs_for_training.eval_status = 'Cancel' GROUP BY trs_for_training.employee_num
 ";
     $stmt = $conn->prepare($query);
