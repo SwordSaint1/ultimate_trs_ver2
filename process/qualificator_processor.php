@@ -1657,11 +1657,11 @@ if($method == 'update_sections'){
 
 $query = "SELECT trs_for_training.id, trs_for_training.employee_num, trs_for_training.training_code,trs_for_training.ojt_end,trs_for_training.ojt_status,
 trs_for_training.eval_submit_date,trs_for_training.extend_days,trs_for_training.eval_remarks,
-trs_request.full_name,trs_request.eprocess,trs_request.training_type,trs_for_training.eval_remarks,trs_request.requested_by,trs_request.batch_no
+trs_request.full_name,trs_for_training.process,trs_for_training.training_type,trs_for_training.eval_remarks,trs_request.requested_by,trs_request.batch_no
 
 FROM trs_for_training
 LEFT JOIN trs_request ON trs_for_training.employee_num = trs_request.employee_num
-WHERE trs_for_training.confirmation != '0' AND trs_for_training.training_code = '$training_code' AND trs_for_training.ojt_status = 'Done'  AND trs_for_training.eval_status = '' OR trs_for_training.eval_status = 'Pending Approval' OR trs_for_training.eval_status = 'OJT Extension' AND trs_for_training.eval_submit = 'Done' GROUP BY trs_for_training.employee_num
+WHERE trs_for_training.confirmation != '0' AND trs_for_training.training_code = '$training_code' AND trs_for_training.ojt_status = 'Done'  AND trs_for_training.eval_status = '' OR trs_for_training.eval_status = 'Pending Approval' OR trs_for_training.eval_status = 'OJT Extension' AND trs_for_training.eval_submit = 'Done' AND trs_request.training_code = '$training_code' GROUP BY trs_for_training.employee_num
 ";
     $stmt = $conn->prepare($query);
     $stmt->execute();
@@ -1688,7 +1688,7 @@ WHERE trs_for_training.confirmation != '0' AND trs_for_training.training_code = 
                 echo '<td>'.$x['employee_num'].'</td>';
                 echo '<td>'.$x['full_name'].'</td>';
                 echo '<td>'.$x['training_type'].'</td>';
-                echo '<td>'.$x['eprocess'].'</td>';
+                echo '<td>'.$x['process'].'</td>';
                 echo '<td>'.$x['requested_by'].'</td>';
                  echo '<td>'.$x['ojt_end'].'</td>';
                 echo '<td>'.$x['ojt_status'].'</td>';
