@@ -237,7 +237,7 @@ if ($method == 'fetch_approve_request_req') {
 		$dateFrom = $_POST['dateFrom'];	
 
 		$c = 0;
-	$query = "SELECT *,date_format(approval_date, '%m-%d-%Y') as approval_date FROM trs_request WHERE approval_status >= 2 AND esection = '$esection' AND (request_date_time >='$dateFrom 00:00:00' AND request_date_time <= '$dateTo 23:59:59') GROUP BY batch_number ORDER BY approval_date ASC";
+	$query = "SELECT *,date_format(approval_date, '%m-%d-%Y') as approval_date FROM trs_request WHERE approval_status >= 2 AND esection = '$esection' AND (request_date_time >='$dateFrom 00:00:00' AND request_date_time <= '$dateTo 23:59:59') AND training_code IS NULL GROUP BY batch_number ORDER BY approval_date ASC";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -431,7 +431,7 @@ if ($method == 'fetch_cancel_request_req') {
 		$dateFrom = $_POST['dateFrom'];
 		
 		$c = 0;
-	$query = "SELECT *,date_format(cancel_date, '%m-%d-%Y') as cancel_date ,date_format(qualifcancel_date, '%m-%d-%Y') as qualifcancel_date  FROM trs_request WHERE approval_status = 0 AND esection = '$esection' AND (request_date_time >='$dateFrom 00:00:00' AND request_date_time <= '$dateTo 23:59:59') GROUP BY batch_number ORDER BY cancel_date,qualifcancel_date ASC";
+	$query = "SELECT *,date_format(cancel_date, '%m-%d-%Y') as cancel_date ,date_format(qualifcancel_date, '%m-%d-%Y') as qualifcancel_date  FROM trs_request WHERE approval_status = 0 AND esection = '$esection' AND (request_date_time >='$dateFrom 00:00:00' AND request_date_time <= '$dateTo 23:59:59') AND training_code IS NULL GROUP BY batch_number ORDER BY cancel_date,qualifcancel_date ASC";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
