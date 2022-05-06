@@ -157,21 +157,14 @@ if ($method == 'prev_req') {
             		echo '<td>'.$x['section'].'</td>';
             		echo '<td>'.$x['emline'].'</td>';
             		echo '<td>'.$x['training_reason'].'</td>';
-            		// echo '<td>'.$x['approval_status'].'</td>';
             		echo '<td>'.$x['request_date_time'].'</td>';
             		echo '<td>'.$x['requested_by'].'</td>';
-            	
-
                 echo '</tr>';
             }
         }
     }
 
-
-  
-
-
-  if($method == 'prevbatch_cancel'){
+ if($method == 'prevbatch_cancel'){
   		$id = trim($_POST['id']); 
         $batch_number = trim($_POST['batch_number']);
         $approval_status= trim($_POST['approval_status']);
@@ -179,9 +172,7 @@ if ($method == 'prev_req') {
         $esection = $_POST['esection'];
         $c = 0;
 
-      $query = "SELECT *,date_format(request_date_time, '%m-%d-%Y %H:%i:%s') as request_date_time FROM trs_request WHERE approval_status = 0 AND esection = '$esection' AND batch_number = '$batch_number' ORDER BY request_date_time ASC";
-
-
+        $query = "SELECT *,date_format(request_date_time, '%m-%d-%Y %H:%i:%s') as request_date_time FROM trs_request WHERE approval_status = 0 AND esection = '$esection' AND batch_number = '$batch_number' ORDER BY request_date_time ASC";
 
         $stmt = $conn->prepare($query);
         $stmt->execute();
@@ -204,17 +195,12 @@ if ($method == 'prev_req') {
             		echo '<td>'.$x['cancel_date'].'</td>';
             		echo '<td>'.$x['qualifcancel_date'].'</td>';
             		echo '<td>'.$x['remarks'].'</td>';
-
-            	
-
                 echo '</tr>';
             }
         }
     }
 
-
-
-  if($method == 'getCuriculum'){
+if($method == 'getCuriculum'){
         $categ = $_POST['value'];
      
         $fetchReason = "SELECT eprocess FROM trs_category WHERE curiculum = '$categ'";
@@ -237,7 +223,7 @@ if ($method == 'fetch_approve_request_req') {
 		$dateFrom = $_POST['dateFrom'];	
 
 		$c = 0;
-	$query = "SELECT *,date_format(approval_date, '%m-%d-%Y') as approval_date FROM trs_request WHERE approval_status >= 2 AND esection = '$esection' AND (request_date_time >='$dateFrom 00:00:00' AND request_date_time <= '$dateTo 23:59:59') AND training_code IS NULL GROUP BY batch_number ORDER BY approval_date ASC";
+	$query = "SELECT *,date_format(approval_date, '%m-%d-%Y') as approval_date FROM trs_request WHERE approval_status >= 2 AND esection = '$esection' AND (request_date_time >='$dateFrom 00:00:00' AND request_date_time <= '$dateTo 23:59:59') AND training_code = '' GROUP BY batch_number ORDER BY approval_date ASC";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -298,7 +284,6 @@ if ($method == 'for_training_data') {
 			}
 	}
 
-
 if($method == 'prev_for_training'){
   		$id = trim($_POST['id']); 
         $training_code = trim($_POST['training_code']);
@@ -316,10 +301,7 @@ if($method == 'prev_for_training'){
       		LEFT JOIN trs_request ON trs_request.employee_num = trs_for_training.employee_num
       		WHERE trs_for_training.confirmation = '4' AND trs_for_training.training_code = '$training_code' AND 
       			trs_request.esection = '$esection' AND trs_training_sched.process = '$process'
-      		GROUP BY
-      		trs_for_training.employee_num
-      ";
-
+      		GROUP BY trs_for_training.employee_num";
 
         $stmt = $conn->prepare($query);
         $stmt->execute();
@@ -431,7 +413,7 @@ if ($method == 'fetch_cancel_request_req') {
 		$dateFrom = $_POST['dateFrom'];
 		
 		$c = 0;
-	$query = "SELECT *,date_format(cancel_date, '%m-%d-%Y') as cancel_date ,date_format(qualifcancel_date, '%m-%d-%Y') as qualifcancel_date  FROM trs_request WHERE approval_status = 0 AND esection = '$esection' AND (request_date_time >='$dateFrom 00:00:00' AND request_date_time <= '$dateTo 23:59:59') AND training_code IS NULL GROUP BY batch_number ORDER BY cancel_date,qualifcancel_date ASC";
+	$query = "SELECT *,date_format(cancel_date, '%m-%d-%Y') as cancel_date ,date_format(qualifcancel_date, '%m-%d-%Y') as qualifcancel_date  FROM trs_request WHERE approval_status = 0 AND esection = '$esection' AND (request_date_time >='$dateFrom 00:00:00' AND request_date_time <= '$dateTo 23:59:59') AND training_code = '' GROUP BY batch_number ORDER BY cancel_date,qualifcancel_date ASC";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
